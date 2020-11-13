@@ -87,7 +87,7 @@ public class Bubble
                 118,84,162,30,88,118,31,35,171,197,
         };
         Bubble.sortInt(arr);
-        Bubble.sort(arr2);
+        Bubble.sort2(arr2);
         if (!SortUtil.isSorted(arr)) {
             throw new RuntimeException("array is not sorted");
         }

@@ -1,9 +1,11 @@
 package com.example.chapter2;
 
+import edu.princeton.cs.algs4.StdDraw;
+
 // 选择排序
 public class Selection
 {
-    public static void sortInt(int[] arr)
+    public static void sortFloat(Double[] arr)
     {
         for (int i = 0; i < arr.length; i++)
         {
@@ -14,7 +16,8 @@ public class Selection
                     min = j;
             }
             if (min != i) {
-                int tmp = arr[min];
+                show(arr, i, min);
+                Double tmp = arr[min];
                 arr[min] = arr[i];
                 arr[i] = tmp;
             }
@@ -38,7 +41,19 @@ public class Selection
         }
     }
 
-    public static void main(String[] args)
+    private static void show(Double[] a, int i, int min) {
+        StdDraw.setYscale(-a.length + i + 0.8, i + 0.8);
+        StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
+        for (int k = 0; k < i; k++)
+            StdDraw.filledRectangle(k, a[k] * 0.3, 0.25, a[k] * 0.3);
+        StdDraw.setPenColor(StdDraw.BLACK);
+        for (int k = i; k < a.length; k++)
+            StdDraw.filledRectangle(k, a[k] * 0.3, 0.25, a[k] * 0.3);
+        StdDraw.setPenColor(StdDraw.BOOK_RED);
+        StdDraw.filledRectangle(min, a[min] * 0.3, 0.25, a[min] * 0.3);
+    }
+
+    public static void test()
     {
         Integer[] arr = {
                 127,63,169,135,26,12,29,188,66,191,
@@ -60,5 +75,18 @@ public class Selection
         {
             System.out.println(n);
         }
+    }
+
+    public static void showDraw(int n) {
+        StdDraw.setCanvasSize(160, 640);
+        StdDraw.setXscale(-1, n+1);
+        StdDraw.setPenRadius(0.006);
+        Double[] arr = SortUtil.randomDoubleArray(n);
+        sortFloat(arr);
+    }
+
+    public static void main(String[] args)
+    {
+        showDraw(100);
     }
 }

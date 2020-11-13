@@ -2,15 +2,21 @@ package com.example.chapter2;
 
 import edu.princeton.cs.algs4.*;
 
+import java.awt.*;
+
 // 希尔排序
 public class Shell
 {
-    public static void sortInt(Integer[] arr)
+    private static final int FF = 4;
+
+    public static void sortFloat(Double[] arr)
     {
         int N = arr.length;
         int gap = 1;
+        int k = 1;
         while (gap < N/3) {
             gap = 3 * gap + 1;    // 1,4,13,40,121
+            k++;
         }
 
         for (; gap > 0; gap /= 3)
@@ -24,7 +30,7 @@ public class Shell
                     StdOut.printf("compare and sort index %d <--> %d\n", j, j-gap);
                     compare_count++;
                     if (arr[j] > arr[j-gap]) {
-                        int tmp = arr[j];
+                        Double tmp = arr[j];
                         arr[j] = arr[j-gap];
                         arr[j-gap] = tmp;
                     } else {
@@ -36,6 +42,9 @@ public class Shell
             StdOut.printf("-------------end gap %d-------------\n", gap);
             //double rate = (double)(compare_count) / (double)(N);
             //StdOut.printf("gap: %d, compare %d, rate: %.2f", gap, compare_count, rate);
+            if (gap < N) {
+                show(arr, --k, gap + "-sorted");
+            }
         }
     }
 
@@ -57,6 +66,35 @@ public class Shell
         }
     }
 
+    public static void show(Double[] a, int k, String message)
+    {
+        StdDraw.setPenColor(StdDraw.BLACK);
+        for (int i = 0; i < a.length; i++) {
+            StdDraw.filledRectangle(i, FF*k + a[i]*(FF-1)*0.5, 0.25, a[i]*(FF-1)*0.5);
+        }
+        StdDraw.setPenColor(StdDraw.BOOK_RED);
+        StdDraw.textLeft(0, FF*k - 0.3, message);
+    }
+
+    public static void showDraw(int n)
+    {
+        Double[] a = new Double[n];
+        for (int i = 0; i < n; i++)
+            a[i] = StdRandom.uniform(0.0, 1.0);
+        int k = (int) Math.round(Math.log(n) / Math.log(3));  // number of h-increment values
+
+        StdDraw.enableDoubleBuffering();
+
+        StdDraw.setCanvasSize(756, 900);
+        StdDraw.setFont(new Font("SansSerif", Font.PLAIN, 9));
+        StdDraw.setXscale(-1, n+1);
+        StdDraw.setYscale(-1 - FF, FF*(k+1));
+        StdDraw.setPenRadius(0.005);
+        sortFloat(a);
+        StdDraw.show();
+    }
+
+
     public static void test()
     {
         final Integer[] arr = {
@@ -75,7 +113,7 @@ public class Shell
                 198,199,148,68,164,102,33,44,76,40,
                 118,84,162,30,88,118,31,35,171,197,
         };
-        Shell.sortInt(arr);
+        Shell.sort(arr);
         //Shell.sort(arr2);
         if (!SortUtil.isSorted(arr)) {
             throw new RuntimeException("array is not sorted");
@@ -87,12 +125,13 @@ public class Shell
         int N = Integer.parseInt(args[0]);
         Integer[] arr = SortUtil.randomIntArray(N);
         StdOut.printf("shell sort %d length array\n", N);
-        Shell.sortInt(arr);
+        Shell.sort(arr);
     }
 
     public static void main(String[] args)
     {
-        test();
+        int n = Integer.parseInt(args[0]);
+        showDraw(n);
         //benchmark(args);
     }
 }

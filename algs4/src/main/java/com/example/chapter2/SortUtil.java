@@ -50,6 +50,15 @@ public class SortUtil
         return arr;
     }
 
+    public static Double[] randomDoubleArray(int N)
+    {
+        Double[] arr = new Double[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = StdRandom.uniform();
+        }
+        return arr;
+    }
+
     public static void randomShuffleArray(Comparable[] arr)
     {
         Random rnd = new Random();
