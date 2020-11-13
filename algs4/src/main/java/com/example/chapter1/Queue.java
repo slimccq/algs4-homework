@@ -32,8 +32,8 @@ class Queue<E> implements Iterable<E>
             first = node;
         } else {
             last.next = node;
-            last = node;
         }
+        last = node;
         N++;
     }
 

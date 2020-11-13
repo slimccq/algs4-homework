@@ -1,17 +1,14 @@
 package com.example.chapter1;
 
+
+import edu.princeton.cs.algs4.StdOut;
+
 // Exercise 1.3.37 约瑟夫环
 public class Josephus {
 
-    class LinkedNode
-    {
-        LinkedNode next;
-        int value = 0;
-    }
-
     // f(1, 1) => 1
     // f(n, m) => (f(n-1, m) + m - 1) % n
-    public void fastMethod(int N, int M)
+    public void useFormula(int N, int M)
     {
         if (N == 0)
             return;
@@ -24,51 +21,61 @@ public class Josephus {
         System.out.println("last alive is " + (r + 1));
     }
 
-    public void listMethod(int N, int M)
+    public void useList(int N, int M)
     {
         if (N == 0)
             return ;
-        LinkedNode list = new LinkedNode();
-        list.value = 0;
-        LinkedNode head = list;
+        LinkedNode<Integer> head = new LinkedNode<>(null, 0, null);
+        LinkedNode<Integer> curr = head;
         for (int i = 1; i < N; i++)
         {
-            LinkedNode node = new LinkedNode();
-            node.value = i;
-            head.next = node;
-            head = node;
+            LinkedNode<Integer> node = new LinkedNode<>(null, i, null);
+            curr.linkAfter(node);
+            curr = node;
         }
-        head.next = list;   // make circle
+        head.linkCircle(curr);
 
-        int count = N;
-        LinkedNode node = list;
-        LinkedNode prev = null;
-        while (count > 1)
+        curr = head;
+        while (N-- > 1)
         {
-            for (int i = 0; i < M; i++)
+            for (int i = 0; i < M - 1; i++)
             {
-                prev = node;
-                node = node.next;
+                curr = curr.next;
             }
             // delete node
-            System.out.println("kill " + node.value);
-            prev.next = node.next;
-            count--;
+            LinkedNode<Integer> next = curr.next;
+            StdOut.printf("kill %d\n", curr.item);
+            curr.unlink();
+            curr = next;
         }
-        System.out.println("last alive is " + prev.value);
+        StdOut.printf("last aliveis %d\n", curr.item);
     }
 
-    public static void arrayMethod(int N, int M)
+    public static void useQueue(int N, int M)
     {
-        // TODO:
+        Queue<Integer> queue = new Queue<>();
+        for (int i = 0; i < N; i++) {
+            queue.enqueue(i);
+        }
+        while (queue.size() > 1)
+        {
+            for (int i = 0; i < M - 1; i++) {
+                queue.enqueue(queue.dequeue());
+            }
+            Integer t = queue.dequeue();
+            StdOut.printf("kill %d\n", t);
+        }
+        StdOut.printf("last alive is %d\n", queue.dequeue());
     }
 
     public static void main(String[] args)
     {
+        int N = Integer.parseInt(args[0]);
+        int M = Integer.parseInt(args[1]);
         Josephus problem = new Josephus();
-        System.out.println("fast method:");
-        problem.fastMethod(7, 2);
         System.out.println("list method:");
-        problem.listMethod(7, 2);
+        problem.useList(N, M);
+        System.out.println("queue method:");
+        problem.useQueue(N, M);
     }
 }

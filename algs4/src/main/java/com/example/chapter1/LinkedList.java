@@ -1,6 +1,5 @@
 package com.example.chapter1;
 
-import java.util.List;
 
 public class LinkedList
 {
