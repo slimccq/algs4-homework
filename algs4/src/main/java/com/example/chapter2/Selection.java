@@ -41,6 +41,23 @@ public class Selection
         }
     }
 
+    public static void sort(Comparable[] arr, int lo, int hi)
+    {
+        for (int i = lo; i < hi; i++)
+        {
+            int min = i;
+            for (int j = i + 1; j < hi; j++)
+            {
+                if (SortUtil.less(arr[j], arr[min])) {
+                    min = j;
+                }
+            }
+            if (min != i) {
+                SortUtil.exch(arr, min, i);
+            }
+        }
+    }
+
     private static void show(Double[] a, int i, int min) {
         StdDraw.setYscale(-a.length + i + 0.8, i + 0.8);
         StdDraw.setPenColor(StdDraw.LIGHT_GRAY);

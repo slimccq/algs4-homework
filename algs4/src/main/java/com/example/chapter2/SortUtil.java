@@ -14,6 +14,12 @@ public class SortUtil
         return a.compareTo(b) < 0;
     }
 
+    // test if arr[i] < arr[j]
+    public static boolean less(Comparable[] arr, int i, int j)
+    {
+        return arr[i].compareTo(arr[j]) < 0;
+    }
+
     public static void exch(Comparable[] arr, int i, int j)
     {
         Comparable tmp = arr[i];

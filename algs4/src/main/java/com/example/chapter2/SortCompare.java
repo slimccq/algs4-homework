@@ -14,7 +14,7 @@ public class SortCompare
             Bubble.sort(arr);
         }
         else if (algo.equals("Insertion")) {
-            Insertion.sort(arr);
+            Insertion.binarySort(arr, 0, arr.length);
         }
         else if (algo.equals("Selection")) {
             Selection.sort(arr);
@@ -27,6 +27,9 @@ public class SortCompare
         }
         else if (algo.equals("Quick")) {
             Quick.sort(arr);
+        }
+        else if (algo.equals("Tim")) {
+            TimSort.sort(arr);
         }
         return timer.elapsedTime();
     }
@@ -42,6 +45,9 @@ public class SortCompare
                 arr[i] = StdRandom.uniform() * 100;
             }
             total += time(algo, arr);
+            if (!SortUtil.isSorted(arr)) {
+                throw new RuntimeException("array not sorted: " + algo);
+            }
         }
         return total;
     }
@@ -130,10 +136,18 @@ public class SortCompare
 
     public static void main(String[] args)
     {
-        String algo1 = args[0];
-        String algo2 = args[1];
-        int N = Integer.parseInt(args[2]);
-        int T = Integer.parseInt(args[3]);
+        int N = 1000;
+        int T = 100;
+        String algo1 = "Selection";
+        String algo2 = "Insertion";
+        if (args.length >= 2) {
+            algo1 = args[0];
+            algo2 = args[1];
+            if (args.length >= 4) {
+                N = Integer.parseInt(args[2]);
+                T = Integer.parseInt(args[3]);
+            }
+        }
         //benchRandomInput(algo1, algo2, N, T);
         benchRandomSameInput(algo1, algo2, N, T);
         //benchReverseInput(algo1, algo2, N, T);

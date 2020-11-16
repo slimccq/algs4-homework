@@ -19,8 +19,13 @@ public class Insertion
             }
         }
     }
-
     public static void sort(Comparable[] arr)
+    {
+        binarySort(arr, 0, arr.length);
+    }
+
+    // Exercise 2.1.25 将大于待插入的数右移
+    public static void sort1(Comparable[] arr)
     {
         for (int i = 1; i < arr.length; i++)
         {
@@ -36,9 +41,8 @@ public class Insertion
 
 
     // Exercise 2.1.24 哨兵，去掉内循环中j>0的判断
-    public static void sortSentinel(Comparable[] arr)
+    public static void sort2(Comparable[] arr)
     {
-        //
         int min = 0;
         for (int i = 1; i < arr.length; i++) {
             if (arr[i].compareTo(arr[min]) < 0) {
@@ -48,7 +52,7 @@ public class Insertion
         if (min != 0) {
             SortUtil.exch(arr, min, 0);
         }
-        for (int i = 1; i < arr.length - 1; i++)
+        for (int i = 2; i < arr.length; i++)
         {
             for (int j = i; SortUtil.less(arr[j], arr[j-1]); j--)
             {
@@ -57,14 +61,14 @@ public class Insertion
         }
     }
 
-    // 小于等于key的index [0, N]
-    public static int upper_bound(Comparable[] arr, int hi, Comparable key)
+    // 小于等于key的index，查找[lo, hi), 返回[lo, hi]
+    public static int binarySearch(Comparable[] arr, int lo, int hi, Comparable key)
     {
-        int lo = 0;
         while (lo < hi)
         {
             int mid = lo + (hi - lo) / 2;
             int cmp = arr[mid].compareTo(key);
+            // arr[mid] <= key
             if (cmp <= 0) {
                 lo = mid + 1;
             }
@@ -75,12 +79,13 @@ public class Insertion
         return hi;
     }
 
-    // 代入二分查找的插入排序
-    public static void sortBinSearch(Comparable[] arr)
+
+    // 代入二分查找的插入排序, [lo, hi)
+    public static void binarySort(Comparable[] arr, int lo, int hi)
     {
-        for (int i = 1; i < arr.length; i++)
+        for (int i = lo+1; i < hi; i++)
         {
-            int idx = upper_bound(arr, i, arr[i]);
+            int idx = binarySearch(arr, lo, i, arr[i]);
             if (idx != i)
             {
                 Comparable tmp = arr[i];
@@ -94,14 +99,14 @@ public class Insertion
     }
 
     // 递归版本
-    public static void sort_recursive(Comparable[] arr, int n)
+    public static void RecursiveSort(Comparable[] arr, int n)
     {
         // base case
         if (n <= 1)
             return ;
 
         // sort first n-1 elements
-        sort_recursive(arr, n-1);
+        RecursiveSort(arr, n-1);
 
         // insert last element to sorted array
         Comparable last = arr[n-1];
@@ -116,21 +121,24 @@ public class Insertion
     public static double benchmarkSort(int N, int T, int method)
     {
         double total = 0.0;
-        Double[] arr = new Double[N];
+        Integer[] arr = new Integer[N];
         for (int t = 0; t < T; t++)
         {
             for (int i = 0; i < N; i++) {
-                arr[i] = StdRandom.uniform() * 100;
+                arr[i] = StdRandom.uniform(1000);
             }
             Stopwatch timer = new Stopwatch();
             if (method == 1) {
-                Insertion.sort(arr);
+                Insertion.sort1(arr);
             } else if (method == 2) {
-                Insertion.sortSentinel(arr);
+                Insertion.sort2(arr);
             } else if (method == 3) {
-                Insertion.sortBinSearch(arr);
+                Insertion.binarySort(arr, 0, arr.length);
             }
             total += timer.elapsedTime();
+            if (!SortUtil.isSorted(arr)) {
+                throw new RuntimeException("array is not sorted " + method);
+            }
         }
         return total;
     }
@@ -147,8 +155,14 @@ public class Insertion
 
     public static void main(String[] args)
     {
-        int N = Integer.parseInt(args[0]);
-        int T = Integer.parseInt(args[1]);
+        int N = 1000;
+        int T = 100;
+        if (args.length >= 1) {
+            N = Integer.parseInt(args[0]);
+            if (args.length >= 2) {
+                T = Integer.parseInt(args[1]);
+            }
+        }
         showBenchmarks(N, T);
     }
 }
