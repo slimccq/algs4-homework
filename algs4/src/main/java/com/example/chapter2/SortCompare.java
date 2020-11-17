@@ -31,8 +31,8 @@ public class SortCompare
         else if (algo.equals("Quick")) {
             Quick.sort(arr);
         }
-        else if (algo.equals("Tim")) {
-            TimSort.sort(arr);
+        else if (algo.equals("TimSort")) {
+            ComparableTimSort.sort(arr, 0, arr.length, null, 0, 0);
         }
         else {
             return -1;

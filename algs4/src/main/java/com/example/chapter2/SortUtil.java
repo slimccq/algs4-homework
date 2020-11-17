@@ -57,6 +57,17 @@ public class SortUtil
         return true;
     }
 
+    // reverse array at [lo, hi)
+    public static void reverseArray(Object[] arr, int lo, int hi)
+    {
+        hi--;
+        while(lo < hi) {
+            Object tmp = arr[lo];
+            arr[lo++] = arr[hi];
+            arr[hi--] = tmp;
+        }
+    }
+
     public static Integer[] randomIntArray(int N)
     {
         Integer[] arr = new Integer[N];
