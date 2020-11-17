@@ -21,7 +21,7 @@ public class Insertion
     }
     public static void sort(Comparable[] arr)
     {
-        binarySort(arr, 0, arr.length);
+        binarySort(arr, 0, arr.length - 1);
     }
 
     // Exercise 2.1.25 将大于待插入的数右移
@@ -79,11 +79,15 @@ public class Insertion
         return hi;
     }
 
+    public static void binarySort(Comparable[] arr)
+    {
+        binarySort(arr, 0, arr.length - 1);
+    }
 
-    // 代入二分查找的插入排序, [lo, hi)
+    // 代入二分查找的插入排序, [lo, hi]
     public static void binarySort(Comparable[] arr, int lo, int hi)
     {
-        for (int i = lo+1; i < hi; i++)
+        for (int i = lo+1; i <= hi; i++)
         {
             int idx = binarySearch(arr, lo, i, arr[i]);
             if (idx != i)
@@ -133,7 +137,7 @@ public class Insertion
             } else if (method == 2) {
                 Insertion.sort2(arr);
             } else if (method == 3) {
-                Insertion.binarySort(arr, 0, arr.length);
+                Insertion.binarySort(arr);
             }
             total += timer.elapsedTime();
             if (!SortUtil.isSorted(arr)) {

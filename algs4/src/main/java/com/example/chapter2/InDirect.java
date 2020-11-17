@@ -3,10 +3,8 @@ package com.example.chapter2;
 import edu.princeton.cs.algs4.StdOut;
 
 // 间接排序
-public class InDirect
-{
-    public static class ArrayPointer implements Comparable<ArrayPointer>
-    {
+public class InDirect {
+    public static class ArrayPointer implements Comparable<ArrayPointer> {
         Comparable[] arr = null;
         int index = 0;
 
@@ -21,8 +19,7 @@ public class InDirect
     }
 
     // Exercise 2.2.20 间接排序
-    public static int[] sort(Comparable[] arr)
-    {
+    public static int[] sort(Comparable[] arr) {
         ArrayPointer[] pointers = new ArrayPointer[arr.length];
         for (int i = 0; i < arr.length; i++) {
             pointers[i] = new ArrayPointer(arr, i);
@@ -36,20 +33,18 @@ public class InDirect
     }
 
     // index sort
-    public static int[] indexSort(Comparable[] a)
-    {
+    public static int[] indexSort(Comparable[] a) {
         int n = a.length;
         int[] perm = new int[n];
         for (int i = 0; i < n; i++)
             perm[i] = i;
 
         int[] aux = new int[n];
-        indexSort(a, perm, aux, 0, n-1);
+        indexSort(a, perm, aux, 0, n - 1);
         return perm;
     }
 
-    public static void indexSort(Comparable[] a, int[] index, int[] aux, int lo, int hi)
-    {
+    public static void indexSort(Comparable[] a, int[] index, int[] aux, int lo, int hi) {
         if (hi <= lo)
             return;
         int mid = lo + (hi - lo) / 2;
@@ -58,25 +53,23 @@ public class InDirect
         indexMerge(a, index, aux, lo, mid, hi);
     }
 
-    public static void indexMerge(Comparable[] a, int[] index, int[] aux, int lo, int mid, int hi)
-    {
+    public static void indexMerge(Comparable[] a, int[] index, int[] aux, int lo, int mid, int hi) {
         // copy to aux[]
         for (int k = lo; k <= hi; k++) {
             aux[k] = index[k];
         }
 
         // merge back to a[]
-        int i = lo, j = mid+1;
+        int i = lo, j = mid + 1;
         for (int k = lo; k <= hi; k++) {
-            if      (i > mid)                    index[k] = aux[j++];
-            else if (j > hi)                     index[k] = aux[i++];
+            if (i > mid) index[k] = aux[j++];
+            else if (j > hi) index[k] = aux[i++];
             else if (a[aux[j]].compareTo(a[aux[i]]) < 0) index[k] = aux[j++];
-            else                                 index[k] = aux[i++];
+            else index[k] = aux[i++];
         }
     }
 
-    public static void testIndirectSort(int N)
-    {
+    public static void testIndirectSort(int N) {
         Integer[] arr = SortUtil.randomIntArray(N);
         int[] perm = InDirect.indexSort(arr);
 //        for (int i = 0; i < perm.length; i++) {

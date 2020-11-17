@@ -4,7 +4,10 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 // 归并排序
 public class Merge {
@@ -44,8 +47,7 @@ public class Merge {
         }
     }
 
-    public static void merge2(Comparable[] arr, Comparable[] aux, int lo, int mid, int hi)
-    {
+    public static void merge2(Comparable[] arr, Comparable[] aux, int lo, int mid, int hi) {
         for (int i = lo; i <= mid; i++) {
             aux[i] = arr[i];
         }
@@ -93,7 +95,7 @@ public class Merge {
 
         // 小数组使用插入排序
         if (hi - lo < 12) {
-            Insertion.binarySort(arr, lo, hi + 1); // Exercise 2.2.11 小数组使用插入排序
+            Insertion.binarySort(arr, lo, hi); // Exercise 2.2.11 小数组使用插入排序
         } else {
             int mid = lo + (hi - lo) / 2;
             sort3(arr, aux, lo, mid);
@@ -138,39 +140,35 @@ public class Merge {
     // 把数组分块，每块单独选择排序，最后把所有块两两合并排序
     public static void sort4(Comparable[] arr) {
         final int N = arr.length;
-        final int B = 16;
-        if (N <= B) {
-            Insertion.binarySort(arr, 0, N);
-            return;
+        final int B = 20;
+        int lo = 0;
+        for (int hi = B; hi <= N; hi += B) {
+            Insertion.binarySort(arr, lo, hi - 1);
+            //StdOut.printf("range: %d-%d\n", lo, hi - 1);
+            lo = hi;
         }
-
-        int blocks = N / B;
-        if (N % B > 0) {
-            blocks++;
-        }
-
-        // 把数组分块选择排序
-        for (int i = 0; i < blocks; i++) {
-            int end = Math.min((i + 1) * B, N);
-            //StdOut.printf("range: %d-%d\n", i*B, end);
-            Insertion.binarySort(arr, i*B, end);
+        if (lo < N) {
+            Insertion.binarySort(arr, lo, N - 1);
+            //StdOut.printf("range: %d-%d\n", lo, N - 1);
         }
 
         // 两两合并排序
         Comparable[] aux = new Comparable[N];
-        for (int b = 1; b < blocks; b *= 2)
-        {
-            int sz = b * B;
-            for (int lo = 0; lo < N; lo += sz*2)
-            {
-                int hi = Math.min(lo + 2*sz-1, N-1);
-                int mid = lo + sz - 1;
-                if (mid >= hi) {
-                    mid = lo + (hi-lo)/2;
-                }
-                //StdOut.printf("merge range: %d-%d-%d\n", lo, mid, hi);
-                merge3(arr, aux, lo, mid, hi);
+        for (int sz = B; sz < N; sz *= 2) {
+            lo = 0;
+            int hi = 2 * sz;
+            while (hi <= N) {
+                StdOut.printf("merge range: %d-%d-%d\n", lo, lo + sz, hi - 1);
+                merge3(arr, aux, lo, lo + sz - 1, hi - 1);
+                lo = hi;
+                hi += 2 * sz;
             }
+            int mid = lo + sz;
+            if (mid < N) {
+                StdOut.printf("merge range: %d-%d-%d\n", lo, mid, N - 1);
+                merge3(arr, aux, lo, mid - 1, N - 1);
+            }
+            sz *= 2;
         }
     }
 
@@ -369,7 +367,7 @@ public class Merge {
     }
 
     public static void showBenchmarks(int N, int T) {
-        int[] methods = {1,2,3,4,5};
+        int[] methods = {1, 2, 3, 4, 5};
         for (int method : methods) {
             double t1 = benchmarkSort(N, T, method);
             StdOut.printf("merge sort%d: %.2f\n", method, t1);

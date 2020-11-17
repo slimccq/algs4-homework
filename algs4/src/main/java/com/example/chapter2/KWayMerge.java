@@ -58,7 +58,7 @@ public class KWayMerge
             return;
         }
         if (hi - lo < 16) {
-            Insertion.binarySort(arr, lo, hi+1);
+            Insertion.binarySort(arr, lo, hi);
             return;
         }
         Range[] ranges = parseToRange(arr, k, lo, hi);

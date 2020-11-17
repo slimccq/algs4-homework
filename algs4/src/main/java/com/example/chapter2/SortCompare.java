@@ -14,7 +14,7 @@ public class SortCompare
             Bubble.sort(arr);
         }
         else if (algo.equals("Insertion")) {
-            Insertion.binarySort(arr, 0, arr.length);
+            Insertion.binarySort(arr);
         }
         else if (algo.equals("Selection")) {
             Selection.sort(arr);

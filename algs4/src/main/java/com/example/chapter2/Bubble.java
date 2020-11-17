@@ -1,5 +1,7 @@
 package com.example.chapter2;
 
+import edu.princeton.cs.algs4.StdOut;
+
 // 冒泡排序
 public class Bubble
 {
@@ -44,11 +46,11 @@ public class Bubble
     // 递归版本
     public static void sort2(Comparable[] arr)
     {
-        sort_recursive(arr, arr.length);
+        recursiveSort(arr, arr.length);
     }
 
     // recursive bubble sort
-    public static void sort_recursive(Comparable[] arr, int n)
+    public static void recursiveSort(Comparable[] arr, int n)
     {
         // base case
         if (n == 1) {
@@ -64,7 +66,7 @@ public class Bubble
             }
         }
         // for remaining array
-        sort_recursive(arr, n - 1);
+        recursiveSort(arr, n - 1);
     }
 
     public static void main(String[] args)
@@ -96,7 +98,7 @@ public class Bubble
         }
         for (int n : arr)
         {
-            System.out.println(n);
+            StdOut.println(n);
         }
     }
 }
