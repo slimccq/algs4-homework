@@ -47,6 +47,16 @@ public class SortUtil
         return true;
     }
 
+    public static boolean isSorted(Comparable[] arr, int[] perm)
+    {
+        for (int i = 1; i < perm.length; i++)
+        {
+            if (less(arr[perm[i]], arr[perm[i-1]]))
+                return false;
+        }
+        return true;
+    }
+
     public static Integer[] randomIntArray(int N)
     {
         Integer[] arr = new Integer[N];
@@ -151,4 +161,17 @@ public class SortUtil
         return list;
     }
 
+    // Exercise 2.2.19 计算倒置数量
+    public static int invertionsCount(Comparable[] arr)
+    {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i+1; j < arr.length; j++) {
+                if (arr[i].compareTo(arr[j]) > 0) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }

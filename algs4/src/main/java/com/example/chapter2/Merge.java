@@ -195,7 +195,6 @@ public class Merge {
         }
     }
 
-
     // Exercise 2.2.14 合并有序队列
     public static Queue<Comparable> mergeQueue(Queue<Comparable> q1, Queue<Comparable> q2) {
         Queue<Comparable> result = new ArrayDeque<>();
@@ -299,7 +298,7 @@ public class Merge {
                 throw new RuntimeException(msg);
             }
         }
-        StdOut.printf("array sorted OK");
+        StdOut.printf("array sorted OK\n");
     }
 
     public static void testSortList(int N) {
@@ -359,8 +358,8 @@ public class Merge {
     }
 
     public static void main(String[] args) {
-        int N = 1000;
-        int T = 100;
+        int N = 100;
+        int T = 10;
         if (args.length >= 1) {
             N = Integer.parseInt(args[0]);
             if (args.length >= 2) {
@@ -368,7 +367,7 @@ public class Merge {
             }
         }
 
-        showBenchmarks(N, T);
+        //showBenchmarks(N, T);
         testSortArray(N);
         //testSortList(N);
     }
