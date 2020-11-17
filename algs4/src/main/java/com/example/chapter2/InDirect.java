@@ -35,10 +35,50 @@ public class InDirect
         return perm;
     }
 
+    // index sort
+    public static int[] indexSort(Comparable[] a)
+    {
+        int n = a.length;
+        int[] perm = new int[n];
+        for (int i = 0; i < n; i++)
+            perm[i] = i;
+
+        int[] aux = new int[n];
+        indexSort(a, perm, aux, 0, n-1);
+        return perm;
+    }
+
+    public static void indexSort(Comparable[] a, int[] index, int[] aux, int lo, int hi)
+    {
+        if (hi <= lo)
+            return;
+        int mid = lo + (hi - lo) / 2;
+        indexSort(a, index, aux, lo, mid);
+        indexSort(a, index, aux, mid + 1, hi);
+        indexMerge(a, index, aux, lo, mid, hi);
+    }
+
+    public static void indexMerge(Comparable[] a, int[] index, int[] aux, int lo, int mid, int hi)
+    {
+        // copy to aux[]
+        for (int k = lo; k <= hi; k++) {
+            aux[k] = index[k];
+        }
+
+        // merge back to a[]
+        int i = lo, j = mid+1;
+        for (int k = lo; k <= hi; k++) {
+            if      (i > mid)                    index[k] = aux[j++];
+            else if (j > hi)                     index[k] = aux[i++];
+            else if (a[aux[j]].compareTo(a[aux[i]]) < 0) index[k] = aux[j++];
+            else                                 index[k] = aux[i++];
+        }
+    }
+
     public static void testIndirectSort(int N)
     {
         Integer[] arr = SortUtil.randomIntArray(N);
-        int[] perm =InDirect.sort(arr);
+        int[] perm = InDirect.indexSort(arr);
 //        for (int i = 0; i < perm.length; i++) {
 //            StdOut.printf("%d\n", arr[perm[i]]);
 //        }

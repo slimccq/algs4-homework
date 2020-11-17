@@ -171,18 +171,4 @@ public class SortUtil
         }
         return list;
     }
-
-    // Exercise 2.2.19 计算倒置数量
-    public static int invertionsCount(Comparable[] arr)
-    {
-        int count = 0;
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = i+1; j < arr.length; j++) {
-                if (arr[i].compareTo(arr[j]) > 0) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
 }

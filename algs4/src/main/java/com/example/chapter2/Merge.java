@@ -44,6 +44,25 @@ public class Merge {
         }
     }
 
+    public static void merge2(Comparable[] arr, Comparable[] aux, int lo, int mid, int hi)
+    {
+        for (int i = lo; i <= mid; i++) {
+            aux[i] = arr[i];
+        }
+        for (int j = mid + 1; j <= hi; j++) {
+            aux[j] = arr[hi - j + mid + 1];
+        }
+        int i = lo;
+        int j = hi;
+        for (int k = lo; k <= hi; k++) {
+            if (aux[j].compareTo(aux[i]) < 0) {
+                arr[k] = aux[j--];
+            } else {
+                arr[k] = aux[i++];
+            }
+        }
+    }
+
     public static void sort2(Comparable[] arr) {
         Comparable[] aux = new Comparable[arr.length];
         bottomUpSort(arr, aux);
