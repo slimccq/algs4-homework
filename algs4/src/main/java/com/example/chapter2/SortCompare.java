@@ -25,11 +25,17 @@ public class SortCompare
         else if (algo.equals("Merge")) {
             Merge.sort(arr);
         }
+        else if (algo.equals("3WayMerge")) {
+            KWayMerge.sort(arr);
+        }
         else if (algo.equals("Quick")) {
             Quick.sort(arr);
         }
         else if (algo.equals("Tim")) {
             TimSort.sort(arr);
+        }
+        else {
+            return -1;
         }
         return timer.elapsedTime();
     }
