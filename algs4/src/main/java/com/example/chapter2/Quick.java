@@ -12,6 +12,24 @@ public class Quick
         sort(arr, 0, arr.length - 1);
     }
 
+    public static int partition(Comparable[] A, int lo, int hi)
+    {
+        int i = lo;
+        int j = hi + 1;
+        Comparable pivot = A[lo];
+        while (i < j) {
+            while(A[++i].compareTo(pivot) < 0 && i < hi)
+                ;
+            while(pivot.compareTo(A[--j]) < 0 && j > lo)
+                ;
+            if (i < j) {
+                SortUtil.exch(A, i, j);
+            }
+        }
+        SortUtil.exch(A, lo, j);
+        return j;
+    }
+
     public static int partition0(Comparable[] arr, int lo, int hi)
     {
         int i = lo;
@@ -37,33 +55,52 @@ public class Quick
         return j;
     }
 
-    public static int partition(Comparable[] A, int lo, int hi)
+    // Tony Hoare  partition scheme
+    public static int partition2(Comparable[] A, int lo, int hi)
     {
-        int i = lo;
+        int i = lo - 1;
         int j = hi + 1;
-        Comparable pivot = A[lo];
-        while (i < j) {
-            while(A[i++].compareTo(pivot) < 0 && i < hi)
+        Comparable pivot = A[(hi + lo)/2];
+        while(true)
+        {
+            while(A[++i].compareTo(pivot) < 0)
                 ;
-            while(A[--j].compareTo(pivot) < 0 && j > lo)
+            while(A[++j].compareTo(pivot) > 0)
                 ;
             if (i < j) {
                 SortUtil.exch(A, i, j);
+            } else {
+                return j;
             }
         }
-        SortUtil.exch(A, lo, j);
-        return j;
     }
+
+    // Nico Lomuto partition scheme
+    public static int partition1(Comparable[] A, int lo, int hi)
+    {
+        int i = lo;
+        Comparable pivot = A[hi];
+        for (int j = lo; j < hi; j++) {
+            if (A[j].compareTo(pivot) < 0) {
+                SortUtil.exch(A, i, j);
+                i++;
+            }
+        }
+        SortUtil.exch(A, i, hi);
+        return i;
+    }
+
 
     public static void sort(Comparable[] A, int lo, int hi)
     {
         if (lo >= hi)
             return;
-        if (hi - lo < 7) {
-            Insertion.binarySort(A, lo, hi+1);
-            return;
-        }
+//        if (hi - lo < 7) {
+//            Insertion.binarySort(A, lo, hi);
+//            return;
+//        }
         int j = partition(A, lo, hi);
+        StdOut.printf("partion to range: %d-%d-%d\n", lo, j, hi);
         sort(A, lo, j - 1);
         sort(A, j + 1, hi);
     }
@@ -75,7 +112,7 @@ public class Quick
             A[i] = StdRandom.uniform(100);
         }
         Quick.sort(A);
-        if (SortUtil.isSorted(A)) {
+        if (!SortUtil.isSorted(A)) {
             throw new RuntimeException("array is not sorted");
         }
         StdOut.printf("array sorted OK\n");

@@ -27,15 +27,19 @@ public class Merge {
         int mid = lo + (hi - lo) / 2;
         sort1(arr, aux, lo, mid);
         sort1(arr, aux, mid + 1, hi);
+
+        // 序列A[lo,mid]和A[mid+1,hi]都有序
+        // A[mid] <= A[mid+1]则a序列全部数值都<=b序列
+        if (arr[mid].compareTo(arr[mid+1]) <= 0) {
+            return;
+        }
         merge1(arr, aux, lo, mid, hi);
     }
 
     public static void merge1(Comparable[] arr, Comparable[] aux, int lo, int mid, int hi) {
         int i = lo;
         int j = mid + 1;
-        if (arr[mid].compareTo(arr[j]) <= 0) {
-            return;
-        }
+
         for (int k = lo; k <= hi; k++) {
             aux[k] = arr[k];
         }
@@ -47,6 +51,7 @@ public class Merge {
         }
     }
 
+    // Exercise 2.2.10 将A[mid+1,hi]倒序归并，可以减少内循环的条件判断，但排序结果非稳定
     public static void merge2(Comparable[] arr, Comparable[] aux, int lo, int mid, int hi) {
         for (int i = lo; i <= mid; i++) {
             aux[i] = arr[i];
