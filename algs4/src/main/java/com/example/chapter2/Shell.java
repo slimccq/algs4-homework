@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.*;
 import java.awt.*;
 
 // 希尔排序
-public class Shell
+public class Shell extends SortBase
 {
     private static final int FF = 4;
 
@@ -59,8 +59,8 @@ public class Shell
         {
             for (int i = h; i < N; i++)
             {
-                for (int j = i; j >= h && SortUtil.less(arr[j], arr[j-h]); j -= h) {
-                    SortUtil.exch(arr, j, j-h);
+                for (int j = i; j >= h && less(arr[j], arr[j-h]); j -= h) {
+                    exch(arr, j, j-h);
                 }
             }
         }

@@ -3,7 +3,7 @@ package com.example.chapter2;
 import edu.princeton.cs.algs4.StdOut;
 
 // 冒泡排序
-public class Bubble
+public class Bubble extends SortBase
 {
     public static void sortInt(int[] arr)
     {
@@ -25,15 +25,15 @@ public class Bubble
         }
     }
 
-    public static void sort(Comparable[] arr)
+    public static void sort(Comparable[] a)
     {
-        for (int i = arr.length - 1; i > 0; i--)
+        for (int i = a.length - 1; i > 0; i--)
         {
             boolean has_swap = false;
             for (int j = 0; j < i; j++)
             {
-                if (arr[j].compareTo(arr[j+1]) > 0) {
-                    SortUtil.exch(arr, j+1, j);
+                if (less(a, j, j+1)) {
+                    exch(a, j+1, j);
                     has_swap = true;
                 }
             }
@@ -61,8 +61,8 @@ public class Bubble
         // after this pass, the largest element is bubbled to end.
         for (int i = 0; i < n - 1; i++)
         {
-            if (SortUtil.less(arr[i+1], arr[i])) {
-                SortUtil.exch(arr, i, i+1);
+            if (less(arr, i+1, i)) {
+                exch(arr, i, i+1);
             }
         }
         // for remaining array

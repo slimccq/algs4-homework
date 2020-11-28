@@ -7,20 +7,16 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class SortUtil {
-    public static boolean less(Comparable a, Comparable b) {
+    private static boolean less(Comparable a, Comparable b) {
         return a.compareTo(b) < 0;
     }
 
     // test if arr[i] < arr[j]
-    public static boolean less(Comparable[] arr, int i, int j) {
+    private static boolean less(Comparable[] arr, int i, int j) {
         return arr[i].compareTo(arr[j]) < 0;
     }
 
-    public static void exch(Comparable[] arr, int i, int j) {
-        Comparable tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-    }
+
 
     public static boolean isSorted(Comparable[] arr) {
         for (int i = 1; i < arr.length; i++) {

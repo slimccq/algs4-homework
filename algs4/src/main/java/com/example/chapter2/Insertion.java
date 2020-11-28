@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.*;
 
 
 // 插入排序
-public class Insertion
+public class Insertion extends SortBase
 {
     // Exercise 2.1.26 原始int类型版本
     public static void sortInt(int[] arr)
@@ -50,13 +50,13 @@ public class Insertion
             }
         }
         if (min != 0) {
-            SortUtil.exch(arr, min, 0);
+            exch(arr, min, 0);
         }
         for (int i = 2; i < arr.length; i++)
         {
-            for (int j = i; SortUtil.less(arr[j], arr[j-1]); j--)
+            for (int j = i; less(arr, j, j-1); j--)
             {
-                SortUtil.exch(arr, j, j-1);
+                exch(arr, j, j-1);
             }
         }
     }
@@ -115,7 +115,7 @@ public class Insertion
         // insert last element to sorted array
         Comparable last = arr[n-1];
         int j = n - 2;
-        while (j >= 0 && SortUtil.less(last, arr[j])) {
+        while (j >= 0 && less(last, arr[j])) {
             arr[j+1] = arr[j];
             j--;
         }

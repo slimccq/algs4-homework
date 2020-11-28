@@ -3,7 +3,7 @@ package com.example.chapter2;
 import edu.princeton.cs.algs4.StdDraw;
 
 // 选择排序
-public class Selection
+public class Selection extends SortBase
 {
     public static void sortFloat(Double[] arr)
     {
@@ -31,12 +31,12 @@ public class Selection
             int min = i;
             for (int j = i + 1; j < arr.length; j++)
             {
-                if (SortUtil.less(arr[j], arr[min])) {
+                if (less(arr, j, min)) {
                     min = j;
                 }
             }
             if (min != i) {
-                SortUtil.exch(arr, min, i);
+                exch(arr, min, i);
             }
         }
     }
@@ -48,12 +48,12 @@ public class Selection
             int min = i;
             for (int j = i + 1; j < hi; j++)
             {
-                if (SortUtil.less(arr[j], arr[min])) {
+                if (less(arr, j, min)) {
                     min = j;
                 }
             }
             if (min != i) {
-                SortUtil.exch(arr, min, i);
+                exch(arr, min, i);
             }
         }
     }

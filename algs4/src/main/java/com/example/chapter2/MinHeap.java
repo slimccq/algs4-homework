@@ -1,6 +1,6 @@
 package com.example.chapter2;
 
-public class MinHeap<E extends Comparable<E>>
+public class MinHeap<E extends Comparable<E>> extends SortBase
 {
     private E[] arr = (E[])new Object[1];
     private int N = 0;
@@ -25,10 +25,10 @@ public class MinHeap<E extends Comparable<E>>
         // swap k with his parent
         while(k > 0) {
             int j = (k - 1) / 2; // parent
-            if (!SortUtil.less(arr, j, k)) {
+            if (!less(arr, j, k)) {
                 break;
             }
-            SortUtil.exch(arr, j, k);
+            exch(arr, j, k);
             k = j;
         }
     }
@@ -42,13 +42,13 @@ public class MinHeap<E extends Comparable<E>>
                 break;
             }
             int j = i;
-            if (i + 1 < N && SortUtil.less(arr, i+1, i)) {
+            if (i + 1 < N && less(arr, i+1, i)) {
                 j = i + 1; // right child less
             }
-            if (!SortUtil.less(j, k)) {
+            if (!less(j, k)) {
                 break;
             }
-            SortUtil.exch(arr, j, k);
+            exch(arr, j, k);
             k = j;
         }
     }
@@ -65,7 +65,7 @@ public class MinHeap<E extends Comparable<E>>
 
     public void pop()
     {
-        SortUtil.exch(arr, 0, N-1);
+        exch(arr, 0, N-1);
         N--;
         downSink(0);
     }
