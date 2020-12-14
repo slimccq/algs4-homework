@@ -29,7 +29,10 @@ public class SortCompare
             KWayMerge.sort(arr);
         }
         else if (algo.equals("Quick")) {
-            Quick.sort(arr);
+            Quick.sort4(arr);
+        }
+        else if (algo.equals("Heap")) {
+            Heap.sort1(arr);
         }
         else if (algo.equals("TimSort")) {
             ComparableTimSort.sort(arr, 0, arr.length, null, 0, 0);

@@ -294,8 +294,8 @@ public class Quick extends SortBase
         for (int k = hi; k >= q; k--)
             exch(a, k, i++);
 
-        sort(a, lo, j);
-        sort(a, i, hi);
+        sort4(a, lo, j);
+        sort4(a, i, hi);
     }
 
     public void sort5(Comparable[] a)
@@ -339,7 +339,7 @@ public class Quick extends SortBase
         for (int i = 0; i < N; i++) {
             A[i] = StdRandom.uniform(100);
         }
-        Quick.sort2(A);
+        Quick.sort4(A);
         if (!SortUtil.isSorted(A)) {
             throw new RuntimeException("array is not sorted");
         }
