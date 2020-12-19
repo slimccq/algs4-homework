@@ -2,7 +2,7 @@ package com.example.chapter2;
 
 import edu.princeton.cs.algs4.StdOut;
 
-public class MinPQ<E extends Comparable<E>> extends SortBase {
+public class MinPQ<E extends Comparable<E>> extends SortBase  {
     private E[] arr = null;
     private int N = 0;
 
