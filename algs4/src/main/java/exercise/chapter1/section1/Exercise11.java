@@ -12,14 +12,21 @@ public class Exercise11 {
             N = Integer.parseInt(args[1]);
             M = Integer.parseInt(args[2]);
         }
-        boolean[][] array = new boolean[N][];
-        for (int i = 0; i < N; i++) {
-            array[i] = RandUtil.randBoolArray(M);
-        }
-        printBoolArray(array);
+        boolean[][] mat = createBoolMat(N, M);
+        printBoolMat(mat);
     }
 
-    public static void printBoolArray(boolean[][] array) {
+    public static boolean[][] createBoolMat(int N, int M) {
+        boolean[][] mat = new boolean[N][M];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                mat[i][j] = RandUtil.randBool();
+            }
+        }
+        return mat;
+    }
+
+    public static void printBoolMat(boolean[][] array) {
         StdOut.print("  ");
         for (int i = 0; i < array.length; i++) {
             StdOut.printf(" %d", i+1);

@@ -6,15 +6,23 @@ import java.util.Random;
 
 public class RandUtil {
 
-    public static boolean[] randBoolArray(int N) {
-        boolean[] arr = new boolean[N];
+    public static boolean randBool() {
+        return StdRandom.uniform(2) == 0;
+    }
+
+    public static int randInt(int N) {
+        return StdRandom.uniform(N);
+    }
+
+    public static int[] randIntArray(int N) {
+        int[] arr = new int[N];
         for (int i = 0; i < N; i++) {
-            arr[i] = StdRandom.uniform(2) == 0;
+            arr[i] = StdRandom.uniform(100);
         }
         return arr;
     }
 
-    public static Integer[] randIntArray(int N) {
+    public static Integer[] randIntegerArray(int N) {
         Integer[] arr = new Integer[N];
         for (int i = 0; i < N; i++) {
             arr[i] = StdRandom.uniform(100);
