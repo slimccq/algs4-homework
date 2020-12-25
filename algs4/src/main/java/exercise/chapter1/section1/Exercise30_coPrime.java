@@ -3,9 +3,8 @@ package exercise.chapter1.section1;
 import edu.princeton.cs.algs4.StdOut;
 
 // 计算NxN阵列的互质数
-public class Exercise30 {
-    public static void main(String[] args)
-    {
+public class Exercise30_coPrime {
+    public static void main(String[] args) {
         int N = 10;
         if (args.length > 1) {
             N = Integer.parseInt(args[1]);
@@ -26,11 +25,19 @@ public class Exercise30 {
     }
 
     public static boolean isCoPrime(int a, int b) {
+        if (a == b && a != 1) {
+            return false;
+        }
+
+        // The only integers that are coprime to zero are 1 and -1
+        if (a == 0 || b == 0) {
+            return (a + b) == 1 || (a + b) == -1;
+        }
         return gcd(a, b) == 1;
     }
 
     public static int gcd(int p, int q) {
-        while(q > 0) {
+        while (q > 0) {
             int r = p % q;
             p = q;
             q = r;
