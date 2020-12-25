@@ -7,7 +7,7 @@ import java.util.Random;
 public class RandUtil {
 
     public static boolean randBool() {
-        return StdRandom.uniform(2) == 0;
+        return StdRandom.bernoulli();
     }
 
     public static int randInt(int N) {
