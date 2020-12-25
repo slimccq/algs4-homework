@@ -7,7 +7,7 @@ import exercise.common.Utility;
 
 import java.util.Arrays;
 
-//
+// Counter
 public class Exercise9_Counter {
    public static void main(String[] args)
    {
