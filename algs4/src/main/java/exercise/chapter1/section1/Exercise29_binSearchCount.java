@@ -8,7 +8,7 @@ import exercise.common.Utility;
 import java.util.Arrays;
 
 // 二分查找rank和count
-public class Exercise29 {
+public class Exercise29_binSearchCount {
     public static void main(String[] args)
     {
         int N = 100;

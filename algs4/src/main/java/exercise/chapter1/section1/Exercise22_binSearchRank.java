@@ -6,7 +6,7 @@ import exercise.common.RandUtil;
 import java.util.Arrays;
 
 // 打印BinarySearch递归深度
-public class Exercise22 {
+public class Exercise22_binSearchRank {
     public static void main(String[] args)
     {
         int N = 100;

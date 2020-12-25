@@ -3,7 +3,7 @@ package exercise.chapter1.section1;
 import edu.princeton.cs.algs4.StdOut;
 
 // 计算Fibonacci
-public class Exercise19 {
+public class Exercise19_fibonacci {
     public static void main(String[] args) {
         long n = 50;
         int method = 3;

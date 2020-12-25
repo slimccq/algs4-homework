@@ -3,7 +3,7 @@ package exercise.chapter1.section1;
 import edu.princeton.cs.algs4.StdOut;
 
 // 递归计算lg(N!)
-public class Exercise20 {
+public class Exercise20_lgFact {
     public static void main(String[] args)
     {
         long N = 20;

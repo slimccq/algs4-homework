@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import exercise.common.*;
 
 // 打印二维bool数组
-public class Exercise11 {
+public class Exercise11_boolMat {
     public static void main(String[] args) {
         int N = 10;
         int M = 10;

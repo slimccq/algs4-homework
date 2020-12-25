@@ -8,7 +8,7 @@ import exercise.common.Utility;
 import java.util.Arrays;
 
 // 删除重复元素
-public class Exercise28 {
+public class Exercise28_removeDup {
     public static void main(String[] args) {
         int N = 100;
         if (args.length > 1) {

@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import exercise.common.RandUtil;
 
 // 二维数组行列转置
-public class Exercise13 {
+public class Exercise13_transposeMat {
     public static void main(String[] args) {
         int N = 3;
         int M = 4;

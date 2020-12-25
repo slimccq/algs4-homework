@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 // histogram
-public class Exercise15 {
+public class Exercise15_histogram {
     public static void main(String[] args) {
         int N = 100;
         int M = 100;

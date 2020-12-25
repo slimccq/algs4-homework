@@ -5,7 +5,7 @@ import java.math.*;
 import edu.princeton.cs.algs4.StdOut;
 
 // 实现lg()函数
-public class Exercise14 {
+public class Exercise14_lg {
     public static void main(String[] args) {
         int[] input = new int[]{0, 1, 2, 10, 32, 128};
         int[] expectd = new int[]{0, 0, 1, 3, 5, 7};

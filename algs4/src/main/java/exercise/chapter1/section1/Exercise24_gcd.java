@@ -3,7 +3,7 @@ package exercise.chapter1.section1;
 import edu.princeton.cs.algs4.StdOut;
 
 // 打印欧几里得深度
-public class Exercise24 {
+public class Exercise24_gcd {
 
     public static void main(String[] args)
     {
