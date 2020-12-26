@@ -10,7 +10,7 @@ public class Exercise9_Completeparenthesis
 {
     public static void main(String[] args)
     {
-        String input = "1 + 2 ) * 3 - 4 ) * 5 - 6 )))";
+        String input = "1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) )";
         if (args.length > 1) {
             input = args[1].trim();
         }
