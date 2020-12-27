@@ -32,7 +32,7 @@ public class Exercise21_ListFind {
 
     // 单链表查找元素
     public static boolean findNode(LinkedList slist, int key) {
-        LinkedList.LinkedNode node = slist.first.next;
+        LinkedList.LinkedNode node = slist.sentinel.next;
         while (node != null) {
             if (node.value.equals(key)) {
                 return true;
@@ -44,7 +44,7 @@ public class Exercise21_ListFind {
 
     // 双链表查找元素
     public static boolean findNode(DoubleLinkedList dlist, int key) {
-        DoubleLinkedList.DoubleLinkedNode node = dlist.first.next;
+        DoubleLinkedList.LinkedNode node = dlist.sentinel.next;
         while (node != null) {
             if (node.value.equals(key)) {
                 return true;

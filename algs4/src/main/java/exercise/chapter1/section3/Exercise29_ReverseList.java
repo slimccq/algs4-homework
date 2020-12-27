@@ -15,7 +15,7 @@ public class Exercise29_ReverseList {
         LinkedList slist = LinkedList.makeIntList(arr);
         StdOut.printf("create linked list:\n");
         LinkedList.printIntList(slist);
-        slist.first.next = reverseListRecursive(slist.first.next);
+        slist.sentinel.next = reverseListRecursive(slist.sentinel.next);
         StdOut.printf("after reversion:\n");
         LinkedList.printIntList(slist);
     }

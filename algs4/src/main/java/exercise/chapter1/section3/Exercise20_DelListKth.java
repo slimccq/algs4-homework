@@ -32,7 +32,7 @@ public class Exercise20_DelListKth {
 
     // 单链表删除第k个元素
     public static void deleteKthNode(LinkedList slist, int k) {
-        LinkedList.LinkedNode prev = slist.first;
+        LinkedList.LinkedNode prev = slist.sentinel;
         LinkedList.LinkedNode node = prev.next;
         while (node != null && --k > 0) {
             prev = node;
@@ -47,7 +47,7 @@ public class Exercise20_DelListKth {
 
     // 双链表删除第k个元素
     public static void deleteKthNode(DoubleLinkedList dlist, int k) {
-        DoubleLinkedList.DoubleLinkedNode node = dlist.first;
+        DoubleLinkedList.LinkedNode node = dlist.sentinel;
         while (node != null && k-- > 0) {
             node = node.next;
         }

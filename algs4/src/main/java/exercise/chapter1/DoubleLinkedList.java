@@ -7,14 +7,15 @@ import edu.princeton.cs.algs4.StdOut;
 public class DoubleLinkedList {
 
     // first dummy sentinel node
-    public DoubleLinkedNode first = new DoubleLinkedNode(null);
+    public LinkedNode sentinel = new LinkedNode(null);
+    public LinkedNode last = null;
 
     public DoubleLinkedList() {
     }
 
     public int size() {
         int n = 0;
-        DoubleLinkedNode node = first.next;
+        LinkedNode node = sentinel.next;
         while(node != null) {
             node = node.next;
             n++;
@@ -22,26 +23,36 @@ public class DoubleLinkedList {
         return n;
     }
 
+    public LinkedNode first() {
+        return sentinel.next;
+    }
+
     // 在头部插入节点
-    public void insertHead(DoubleLinkedNode node) {
-        DoubleLinkedNode head = first.next;
+    public void insertHead(LinkedNode node) {
+        LinkedNode head = sentinel.next;
+        if (head == null) {
+            last = node;
+        } else {
+            head.prev = node;
+        }
         node.next = head;
-        head.prev = node;
-        first.next = node;
+        sentinel.next = node;
     }
 
     // 在尾部插入节点
-    public void insertTail(DoubleLinkedNode node) {
-        DoubleLinkedNode last = first.next;
-        while(last.next != null) {
-            last = last.next;
+    public void insertTail(LinkedNode node) {
+        if (sentinel.next == null) {
+            sentinel.next = node;
+            last = node;
+        } else {
+            last.next = node;
         }
-        last.next = node;
         node.prev = last;
+        last = node;
     }
 
     // 把节点b插入到节点a之前
-    public void insertBefore(DoubleLinkedNode a, DoubleLinkedNode b) {
+    public void insertBefore(LinkedNode a, LinkedNode b) {
         if (a.prev != null) {
             a.prev.next = b;
         }
@@ -51,7 +62,7 @@ public class DoubleLinkedList {
     }
 
     // Exercise 1.3.25, 把节点b插入到节点a后
-    public void insertAfter(DoubleLinkedNode a, DoubleLinkedNode b) {
+    public void insertAfter(LinkedNode a, LinkedNode b) {
         if (a == null || b == null) {
             return ;
         }
@@ -64,33 +75,32 @@ public class DoubleLinkedList {
     }
 
     // 删除头节点
-    public DoubleLinkedNode removeHead() {
-        DoubleLinkedNode head = first.next;
+    public LinkedNode removeHead() {
+        LinkedNode head = sentinel.next;
         if (head == null) {
             return null;
         }
-        first.next = head.next;
-        head.next.prev = first;
+        sentinel.next = head.next;
+        head.next.prev = sentinel;
         head.prev = null;
         head.next = null;
         return head;
     }
 
     // 删除尾节点
-    public DoubleLinkedNode removeTail() {
-        DoubleLinkedNode node = first.next;
-        DoubleLinkedNode prev = first;
-        while(node.next != null) {
-            prev = node;
-            node = node.next;
+    public LinkedNode removeTail() {
+        LinkedNode prev = last.prev;
+        LinkedNode node = last;
+        if (prev != null) {
+            prev.next = null;
         }
-        prev.next = null;
-        node.prev = null;
+        last.prev = null;
+        last = prev;
         return node;
     }
 
     // Exercise 1.3.24, 删除node以后的节点
-    public void removeAfter(DoubleLinkedNode node) {
+    public void removeAfter(LinkedNode node) {
         if (node == null) {
             return ;
         }
@@ -107,19 +117,16 @@ public class DoubleLinkedList {
         if (n == 0) {
             return list;
         }
-        DoubleLinkedNode prev = list.first;
         for (int i = 0; i < n; i++) {
-            DoubleLinkedNode node = new DoubleLinkedNode(array[i]);
-            node.prev = prev;
-            prev.next = node;
-            prev = node;
+            LinkedNode node = new LinkedNode(array[i]);
+            list.insertTail(node);
         }
         return list;
     }
 
     public static void printIntList(DoubleLinkedList list) {
         StdOut.print("[");
-        DoubleLinkedNode node = list.first.next;
+        LinkedNode node = list.sentinel.next;
         while (node != null) {
             StdOut.printf(" %d ", node.value);
             node = node.next;
@@ -127,12 +134,12 @@ public class DoubleLinkedList {
         StdOut.print("]\n");
     }
 
-    public static class DoubleLinkedNode {
-        public DoubleLinkedNode prev = null;
-        public DoubleLinkedNode next = null;
+    public static class LinkedNode {
+        public LinkedNode prev = null;
+        public LinkedNode next = null;
         public Object value;
 
-        public DoubleLinkedNode(Object value) {
+        public LinkedNode(Object value) {
             this.value = value;
         }
     }

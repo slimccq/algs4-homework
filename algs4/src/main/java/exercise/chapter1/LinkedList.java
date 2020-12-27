@@ -5,14 +5,14 @@ import edu.princeton.cs.algs4.StdOut;
 // 单链表
 public class LinkedList {
     // first dummy sentinel node
-    public LinkedNode first = new LinkedNode(null);
+    public LinkedNode sentinel = new LinkedNode(null);
 
     public LinkedList() {
     }
 
     public int size() {
         int n = 0;
-        LinkedNode node = first.next;
+        LinkedNode node = sentinel.next;
         while(node != null) {
             node = node.next;
             n++;
@@ -20,8 +20,14 @@ public class LinkedList {
         return n;
     }
 
+    // 头节点
+    public LinkedNode first() {
+        return sentinel.next;
+    }
+
+    // 链表是否有环
     public boolean hasCycle() {
-        LinkedNode slow = first.next;
+        LinkedNode slow = sentinel.next;
         LinkedNode fast = slow;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
@@ -31,6 +37,22 @@ public class LinkedList {
             }
         }
         return false;
+    }
+
+    // 头部插入
+    public void insertHead(LinkedNode node) {
+        LinkedNode head = sentinel.next;
+        node.next = head;
+        sentinel.next = node;
+    }
+
+    // 尾部插入
+    public void insertTail(LinkedNode node) {
+        LinkedNode last = sentinel.next;
+        while(last != null && last.next != null) {
+            last = last.next;
+        }
+        last.next = node;
     }
 
     // Exercise 1.3.25
@@ -51,7 +73,7 @@ public class LinkedList {
         if (n == 0) {
             return list;
         }
-        LinkedNode prev = list.first;
+        LinkedNode prev = list.sentinel;
         for (int i = 0; i < n; i++) {
             LinkedNode node = new LinkedNode(null, array[i]);
             prev.next = node;
@@ -64,7 +86,7 @@ public class LinkedList {
     // 打印整数链表
     public static void printIntList(LinkedList list) {
         StdOut.print("[");
-        LinkedNode node = list.first.next;
+        LinkedNode node = list.sentinel.next;
         while (node != null) {
             StdOut.printf(" %d ", node.value);
             node = node.next;

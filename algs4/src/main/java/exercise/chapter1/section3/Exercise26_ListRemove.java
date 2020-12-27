@@ -33,7 +33,7 @@ public class Exercise26_ListRemove {
     // 单链表删除值为key的元素
     public static int removeNode(LinkedList slist, int key) {
         int count = 0;
-        LinkedList.LinkedNode prev = slist.first;
+        LinkedList.LinkedNode prev = slist.sentinel;
         LinkedList.LinkedNode node = prev.next;
         while (node != null) {
             if (node.value.equals(key)) {
@@ -50,7 +50,7 @@ public class Exercise26_ListRemove {
     // 双链表删除值为key的元素
     public static int removeNode(DoubleLinkedList dlist, int key) {
         int count = 0;
-        DoubleLinkedList.DoubleLinkedNode node = dlist.first.next;
+        DoubleLinkedList.LinkedNode node = dlist.sentinel.next;
         while (node != null) {
             if (node.value.equals(key)) {
                 node.prev.next = node.next;

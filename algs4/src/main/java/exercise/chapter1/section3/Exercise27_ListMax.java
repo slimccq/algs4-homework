@@ -31,7 +31,7 @@ public class Exercise27_ListMax {
 
     // 最大值
     public static int maxElement(LinkedList slist) {
-        LinkedList.LinkedNode node = slist.first.next;
+        LinkedList.LinkedNode node = slist.sentinel.next;
         int max = (int)node.value;
         while (node.next == null) {
             node = node.next;
@@ -44,7 +44,7 @@ public class Exercise27_ListMax {
 
     // 最大值
     public static int maxElement(DoubleLinkedList dlist) {
-        DoubleLinkedList.DoubleLinkedNode node = dlist.first.next;
+        DoubleLinkedList.LinkedNode node = dlist.sentinel.next;
         int max = (int)node.value;
         while (node.next == null) {
             node = node.next;
