@@ -58,12 +58,14 @@ public class RandUtil {
         return arr;
     }
 
-    public static void randShuffleArray(Comparable[] arr) {
+    // knuth shuffle
+    public static void shuffleArray(Object[] arr, int n) {
         Random rnd = new Random();
-        for (int i = 0; i < arr.length; i++) {
-            int r = rnd.nextInt(i + 1);
-            Comparable tmp = arr[r];
-            arr[r] = arr[i];
+        for (int i = n - 1; i > 0; i--) {
+            int j = Math.abs(rnd.nextInt()) % (i + 1);
+            //System.out.printf("swap %d <--> %d\n", i, j);
+            Object tmp = arr[j];
+            arr[j] = arr[i];
             arr[i] = tmp;
         }
     }
