@@ -12,23 +12,39 @@ public class Exercise29_ReverseList {
             N = Integer.parseInt(args[1]);
         }
         Integer[] arr = RandUtil.randIntegerArray(N);
-        LinkedList<Integer> slist = LinkedList.makeIntList(arr);
+        LinkedList slist = LinkedList.makeIntList(arr);
         StdOut.printf("create linked list:\n");
         LinkedList.printIntList(slist);
-        slist.first.next = reverseList(slist.first.next);
+        slist.first.next = reverseListRecursive(slist.first.next);
         StdOut.printf("after reversion:\n");
         LinkedList.printIntList(slist);
     }
 
     // 反转单链表
-    public static LinkedList.LinkedNode<Integer> reverseList(LinkedList.LinkedNode<Integer> node) {
-        LinkedList.LinkedNode<Integer> prev = null;
+    public static LinkedList.LinkedNode reverseList(LinkedList.LinkedNode node) {
+        LinkedList.LinkedNode prev = null;
         while (node != null) {
-            LinkedList.LinkedNode<Integer> next = node.next;
+            LinkedList.LinkedNode next = node.next;
             node.next = prev;
             prev = node;
             node = next;
         }
+        return prev;
+    }
+
+    // 递归版本
+    public static LinkedList.LinkedNode reverseListRecursive(LinkedList.LinkedNode node)
+    {
+        if (node == null) {
+            return null;
+        }
+        if (node.next == null) {
+            return node;
+        }
+        LinkedList.LinkedNode next = node.next;
+        LinkedList.LinkedNode prev = reverseListRecursive(next);
+        next.next = node;
+        node.next = null;
         return prev;
     }
 }

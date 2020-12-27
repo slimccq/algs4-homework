@@ -3,7 +3,7 @@ package exercise.chapter1;
 import edu.princeton.cs.algs4.StdOut;
 
 // 单链表
-public class LinkedList<E> {
+public class LinkedList {
     // first dummy sentinel node
     public LinkedNode first = new LinkedNode(null);
 
@@ -45,15 +45,15 @@ public class LinkedList<E> {
     }
 
     // 根据int数组创建一个链表
-    public static LinkedList<Integer> makeIntList(Integer[] array) {
-        LinkedList<Integer> list = new LinkedList<>();
+    public static LinkedList makeIntList(Integer[] array) {
+        LinkedList list = new LinkedList();
         int n = array.length;
         if (n == 0) {
             return list;
         }
-        LinkedNode<Integer> prev = list.first;
+        LinkedNode prev = list.first;
         for (int i = 0; i < n; i++) {
-            LinkedNode<Integer> node = new LinkedNode<>(null, array[i]);
+            LinkedNode node = new LinkedNode(null, array[i]);
             prev.next = node;
             prev = node;
         }
@@ -62,9 +62,9 @@ public class LinkedList<E> {
     }
 
     // 打印整数链表
-    public static void printIntList(LinkedList<Integer> list) {
+    public static void printIntList(LinkedList list) {
         StdOut.print("[");
-        LinkedNode<Integer> node = list.first.next;
+        LinkedNode node = list.first.next;
         while (node != null) {
             StdOut.printf(" %d ", node.value);
             node = node.next;
@@ -72,15 +72,15 @@ public class LinkedList<E> {
         StdOut.print("]\n");
     }
 
-    public static class LinkedNode<E> {
+    public static class LinkedNode {
         public LinkedNode next = null;
-        public E value;
+        public Object value;
 
-        public LinkedNode(E value) {
+        public LinkedNode(Object value) {
             this.value = value;
         }
 
-        public LinkedNode(LinkedNode next, E value) {
+        public LinkedNode(LinkedNode next, Object value) {
             this.next = next;
             this.value = value;
         }

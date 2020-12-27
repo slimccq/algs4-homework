@@ -25,7 +25,7 @@ public class Exercise29_Queue {
 
     public static class Queue<E> implements Iterable<E>
     {
-        private CircularList<E> list = new CircularList<>();
+        private CircularList list = new CircularList();
 
         public Queue() {}
 
@@ -34,13 +34,13 @@ public class Exercise29_Queue {
         }
 
         public void enqueue(E v) {
-            CircularList.ListNode<E> node = new CircularList.ListNode<>(v);
+            CircularList.ListNode node = new CircularList.ListNode(v);
             list.insertTail(node);
         }
 
         public E dequeue() {
-            CircularList.ListNode<E> node = list.removeHead();
-            return node.value;
+            CircularList.ListNode node = list.removeHead();
+            return (E)node.value;
         }
 
         public E top() {
@@ -52,8 +52,8 @@ public class Exercise29_Queue {
         }
 
         private class QueueIterator implements Iterator<E> {
-            private CircularList.ListNode<E> node = null;
-            private CircularList.ListNode<E> prev = null;
+            private CircularList.ListNode node = null;
+            private CircularList.ListNode prev = null;
 
             public QueueIterator() {
                 node = list.first;
@@ -64,7 +64,7 @@ public class Exercise29_Queue {
             }
 
             public E next() {
-                E v = node.value;
+                E v = (E)node.value;
                 prev = node;
                 node = node.next;
                 return v;

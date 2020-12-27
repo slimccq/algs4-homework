@@ -32,8 +32,8 @@ public class Exercise19_DelListTail {
 
     // 单链表删除尾节点
     public static void deleteTailNode(LinkedList slist) {
-        LinkedList.LinkedNode<Integer> prev = slist.first;
-        LinkedList.LinkedNode<Integer> node = prev.next;
+        LinkedList.LinkedNode prev = slist.first;
+        LinkedList.LinkedNode node = prev.next;
         while (node != null && node.next != null) {
             prev = node;
             node = node.next;
@@ -43,7 +43,7 @@ public class Exercise19_DelListTail {
 
     // 双链表删除尾节点
     public static void deleteTailNode(DoubleLinkedList dlist) {
-        DoubleLinkedList.DoubleLinkedNode<Integer> node = dlist.first;
+        DoubleLinkedList.DoubleLinkedNode node = dlist.first;
         while (node != null && node.next != null) {
             node = node.next;
         }

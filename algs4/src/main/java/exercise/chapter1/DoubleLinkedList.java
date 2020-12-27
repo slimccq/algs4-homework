@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 
 
 // 双端链表 Exercise 1.3.31
-public class DoubleLinkedList<E> {
+public class DoubleLinkedList {
 
     // first dummy sentinel node
     public DoubleLinkedNode first = new DoubleLinkedNode(null);
@@ -101,15 +101,15 @@ public class DoubleLinkedList<E> {
     }
 
     // 根据int数组创建一个链表
-    public static DoubleLinkedList<Integer> makeIntList(Integer[] array) {
-        DoubleLinkedList<Integer> list = new DoubleLinkedList<>();
+    public static DoubleLinkedList makeIntList(Integer[] array) {
+        DoubleLinkedList list = new DoubleLinkedList();
         int n = array.length;
         if (n == 0) {
             return list;
         }
-        DoubleLinkedNode<Integer> prev = list.first;
+        DoubleLinkedNode prev = list.first;
         for (int i = 0; i < n; i++) {
-            DoubleLinkedNode<Integer> node = new DoubleLinkedNode<>(array[i]);
+            DoubleLinkedNode node = new DoubleLinkedNode(array[i]);
             node.prev = prev;
             prev.next = node;
             prev = node;
@@ -117,9 +117,9 @@ public class DoubleLinkedList<E> {
         return list;
     }
 
-    public static void printIntList(DoubleLinkedList<Integer> list) {
+    public static void printIntList(DoubleLinkedList list) {
         StdOut.print("[");
-        DoubleLinkedNode<Integer> node = list.first.next;
+        DoubleLinkedNode node = list.first.next;
         while (node != null) {
             StdOut.printf(" %d ", node.value);
             node = node.next;
@@ -127,12 +127,12 @@ public class DoubleLinkedList<E> {
         StdOut.print("]\n");
     }
 
-    public static class DoubleLinkedNode<E> {
+    public static class DoubleLinkedNode {
         public DoubleLinkedNode prev = null;
         public DoubleLinkedNode next = null;
-        public E value;
+        public Object value;
 
-        public DoubleLinkedNode(E value) {
+        public DoubleLinkedNode(Object value) {
             this.value = value;
         }
     }

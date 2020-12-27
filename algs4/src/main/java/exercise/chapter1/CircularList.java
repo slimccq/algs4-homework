@@ -3,7 +3,7 @@ package exercise.chapter1;
 import edu.princeton.cs.algs4.StdOut;
 
 // 循环链表
-public class CircularList<E> {
+public class CircularList {
     // first dummy node
     public ListNode first = null;
     public ListNode last = null;
@@ -72,11 +72,11 @@ public class CircularList<E> {
         return node;
     }
 
-    public static class ListNode<E> {
+    public static class ListNode {
         public ListNode next = null;
-        public E value;
+        public Object value;
 
-        public ListNode(E value) {
+        public ListNode(Object value) {
             this.value = value;
         }
 
