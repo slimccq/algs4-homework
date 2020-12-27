@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 // 双端链表
 public class DoubleLinkedList<E> {
 
-    // first dummy node
+    // first dummy sentinel node
     public DoubleLinkedNode first = new DoubleLinkedNode(null);
     public int N = 0;
 
@@ -23,7 +23,7 @@ public class DoubleLinkedList<E> {
         return n;
     }
 
-    // Exercise 1.3.25
+    // Exercise 1.3.25, 把节点b插入到节点a后
     public void insertAfter(DoubleLinkedNode a, DoubleLinkedNode b) {
         if (a == null || b == null) {
             return ;
@@ -36,7 +36,7 @@ public class DoubleLinkedList<E> {
         b.prev = a;
     }
 
-    // Exercise 1.3.24
+    // Exercise 1.3.24, 删除node以后的节点
     public void removeAfter(DoubleLinkedNode node) {
         if (node == null) {
             return ;

@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 
 // 单链表
 public class LinkedList<E> {
-    // first dummy node
+    // first dummy sentinel node
     public LinkedNode first = new LinkedNode(null);
 
     public LinkedList() {

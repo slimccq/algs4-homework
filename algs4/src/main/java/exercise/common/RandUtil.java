@@ -2,7 +2,9 @@ package exercise.common;
 
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class RandUtil {
 
@@ -18,6 +20,24 @@ public class RandUtil {
         int[] arr = new int[N];
         for (int i = 0; i < N; i++) {
             arr[i] = StdRandom.uniform(100);
+        }
+        return arr;
+    }
+
+    // 随机不重复数组
+    public static int[] randUniqueIntArray(int N) {
+        Set<Integer> exist = new HashSet<>();
+        while(true) {
+            int n = StdRandom.uniform(100);
+            exist.add(n);
+            if (exist.size() == N) {
+                break;
+            }
+        }
+        int[] arr = new int[N];
+        int i = 0;
+        for(Integer n : exist) {
+            arr[i++] = n;
         }
         return arr;
     }
