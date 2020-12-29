@@ -21,6 +21,7 @@ public class Steque<E>
         return n;
     }
 
+    // add item to tail
     public void push(E e)
     {
         DoubleLinkedList.LinkedNode node = new DoubleLinkedList.LinkedNode(e);
@@ -28,6 +29,7 @@ public class Steque<E>
         n++;
     }
 
+    // pop tail item
     public E pop()
     {
         DoubleLinkedList.LinkedNode node = list.removeTail();
@@ -35,6 +37,7 @@ public class Steque<E>
         return (E)node.value;
     }
 
+    // add item to head
     public void enqueue(E e)
     {
         DoubleLinkedList.LinkedNode node = new DoubleLinkedList.LinkedNode(e);

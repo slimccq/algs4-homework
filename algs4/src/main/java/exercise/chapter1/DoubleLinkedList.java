@@ -36,6 +36,7 @@ public class DoubleLinkedList {
             head.prev = node;
         }
         node.next = head;
+        node.prev = sentinel;
         sentinel.next = node;
     }
 
@@ -43,11 +44,11 @@ public class DoubleLinkedList {
     public void insertTail(LinkedNode node) {
         if (sentinel.next == null) {
             sentinel.next = node;
-            last = node;
+            node.prev = sentinel;
         } else {
             last.next = node;
+            node.prev = last;
         }
-        node.prev = last;
         last = node;
     }
 
@@ -72,6 +73,27 @@ public class DoubleLinkedList {
         b.next = a.next;
         a.next = b;
         b.prev = a;
+    }
+
+    // remove node in list
+    public void remove(LinkedNode node)
+    {
+        if (node == null) {
+            return ;
+        }
+        LinkedNode prev = node.prev;
+        LinkedNode next = node.next;
+        if (prev != null) {
+            prev.next = next;
+        }
+        if (next != null) {
+            next.prev = prev;
+        }
+        node.prev = null;
+        node.next = null;
+        if (node == last) {
+            last = prev == sentinel ? null : prev;
+        }
     }
 
     // 删除头节点

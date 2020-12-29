@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 // 计算NxN阵列的互质数
 public class Exercise30_coPrime {
     public static void main(String[] args) {
-        int N = 10;
+        int N = 20;
         if (args.length > 1) {
             N = Integer.parseInt(args[1]);
         }
@@ -29,7 +29,7 @@ public class Exercise30_coPrime {
             return false;
         }
 
-        // The only integers that are coprime to zero are 1 and -1
+        // The only integers that are co-prime to zero are 1 and -1
         if (a == 0 || b == 0) {
             return (a + b) == 1 || (a + b) == -1;
         }
@@ -48,15 +48,15 @@ public class Exercise30_coPrime {
     public static void printBoolMat(boolean[][] array) {
         StdOut.print("  ");
         for (int i = 0; i < array.length; i++) {
-            StdOut.printf(" %d", i);
+            StdOut.printf(" %3d", i);
         }
         StdOut.println();
         for (int i = 0; i < array.length; i++) {
-            StdOut.printf("%2d", i);
+            StdOut.printf("%3d", i);
             for (int j = 0; j < array[i].length; j++) {
-                String text = " ";
+                String text = "   ";
                 if (array[i][j]) {
-                    text = "*";
+                    text = " * ";
                 }
                 StdOut.printf(" %s", text);
             }

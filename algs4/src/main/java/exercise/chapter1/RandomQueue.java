@@ -57,6 +57,7 @@ public class RandomQueue<E> implements Iterable<Object> {
         return array[i];
     }
 
+    // exercise 1.3.36
     public Iterator<Object> iterator() {
         return new QueueIterator();
     }

@@ -29,20 +29,20 @@ public class Exercise35_RandomQueue {
     }
 
     // 52张牌
-    // 0-12: Spade 2、3、4、5、6、7、8、9、10、J、Q、K、A
-    // 13-25: Heart 2-A
-    // 26-38: Club 2-A
-    // 39-51: Diamond 2-A
+    // 0-12: Diamond 2、3、4、5、6、7、8、9、10、J、Q、K、A
+    // 13-25: Club 2-A
+    // 26-38: Heart 2-A
+    // 39-51: Spade 2-A
     private static String prettyCard(int idx) {
         String color = "";
         if (idx < 13) {
-            color = "♠️"; //
+            color = "♦"; // diamond
         } else if (idx < 26) {
-            color = "♥️";
+            color = "♣"; // club
         } else if (idx < 39) {
-            color = "♣️";
+            color = "♥"; // heart
         } else if (idx < 52) {
-            color = "♦️";
+            color = "♠"; // spade
         }
         String faceValue = "";
         int n = idx % 13;
@@ -54,7 +54,7 @@ public class Exercise35_RandomQueue {
             faceValue = "Q";
         } else if (n == 9) {
             faceValue = "J";
-        } else if (n <= 8 && n >= 0) {
+        } else if (n >= 0) {
             faceValue = (n + 2) + "";
         }
         return String.format("%s%s", color, faceValue);
