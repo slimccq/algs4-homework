@@ -1,51 +1,70 @@
 package exercise.chapter1;
 
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import java.util.Iterator;
 
 // 固定长度的栈
-public class FixedCapacityStack<E>
-{
+public class FixedCapacityStack<E> implements Iterable<E> {
     private E[] array;
-    private int n = 0;
+    private final int capacity;
+    private int size = 0;
 
-    public FixedCapacityStack(int n)
-    {
-        this.array = (E[])new Object[n];
+    public static final int DEFAULT_CAPACITY = 4;
+
+    public FixedCapacityStack() {
+        this(DEFAULT_CAPACITY);
+    }
+
+    public FixedCapacityStack(int capacity) {
+        if (capacity <= 0) {
+            capacity = DEFAULT_CAPACITY;
+        }
+        this.capacity = capacity;
+        this.array = (E[]) new Object[capacity];
     }
 
     public boolean isEmpty() {
-        return n == 0;
+        return size == 0;
     }
 
     public int size() {
-        return n;
+        return size;
     }
 
-    public void push(E e)
-    {
-        this.array[this.n++ % this.n] = e;
+    public void push(E e) {
+        int idx = size++ % capacity; // will overwrite old data
+        array[idx] = e;
+    }
+
+    public E peek() {
+        if (size == 0) {
+            return null;
+        }
+        return array[size - 1];
     }
 
     public E pop() {
-        this.n--;
-        E e = this.array[this.n];
-        this.array[this.n] = null;
+        if (size == 0) {
+            return null;
+        }
+        E e = array[size - 1];
+        array[size - 1] = null;
+        size--;
         return e;
     }
 
-    public static void main(String[] args)
-    {
-        FixedCapacityStack<String> stack = new FixedCapacityStack<>(100);
-        while (!StdIn.isEmpty())
-        {
-            String item = StdIn.readString();
-            if (!item.equals("-"))
-                stack.push(item);
-            else if (!stack.isEmpty()) {
-                StdOut.print(stack.pop() + " ");
-            }
+    public Iterator<E> iterator() {
+        return new StackIterator();
+    }
+
+    private class StackIterator implements Iterator<E> {
+        private int idx = 0; // from bottom to top
+
+        public boolean hasNext() {
+            return idx < size;
         }
-        StdOut.printf("(%d left on stack)", stack.size());
+
+        public E next() {
+            return array[idx++];
+        }
     }
 }
