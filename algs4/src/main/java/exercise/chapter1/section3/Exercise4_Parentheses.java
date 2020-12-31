@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 
 
 // 括号是否配对匹配
-public class Exercise4_Parenthese {
+public class Exercise4_Parentheses {
 
     private static char[] leftOps = new char[]{'[', '(', '{'};
     private static char[] rightOps = new char[]{']', ')', '}'};
@@ -14,12 +14,13 @@ public class Exercise4_Parenthese {
     public static void main(String[] args) {
         while (!StdIn.isEmpty()) {
             String s = StdIn.readString();
-            boolean ok = isBalancedParenthes(s);
+            // s = "[()]{}{[()()]()}";
+            boolean ok = isBalancedParentheses(s);
             StdOut.printf("parenthesis %s balanced\n", ok ? "is" : "is not");
         }
     }
 
-    public static int findSymbol(char[] symbols, char ch) {
+    private static int findSymbol(char[] symbols, char ch) {
         for (int i = 0; i < symbols.length; i++) {
             if (symbols[i] == ch) {
                 return i;
@@ -28,7 +29,7 @@ public class Exercise4_Parenthese {
         return -1;
     }
 
-    public static boolean isBalancedParenthes(String input) {
+    private static boolean isBalancedParentheses(String input) {
         Stack stk = new Stack();
         boolean ok = true;
         for (int i = 0; i < input.length(); i++) {
