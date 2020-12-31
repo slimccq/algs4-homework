@@ -20,6 +20,19 @@ public class ListQueue<E> implements GeneralizedQueue<E> {
         return N == 0;
     }
 
+    public void enqueue(E e) {
+        insert(e);
+    }
+
+    public E dequeue() {
+        if (N == 0) {
+            return null;
+        }
+        DoubleLinkedList.LinkedNode node = list.removeHead();
+        N--;
+        return (E)node.value;
+    }
+
     public void insert(E e) {
         DoubleLinkedList.LinkedNode node = new DoubleLinkedList.LinkedNode(e);
         list.insertTail(node);

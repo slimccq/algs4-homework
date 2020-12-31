@@ -49,6 +49,19 @@ public class Deque<E> implements Iterable<E>
         return (E)node.value;
     }
 
+    public E first() {
+        if (n == 0) {
+            return null;
+        }
+        return (E)list.sentinel.next.value;
+    }
+
+    public E last() {
+        if (n == 0) {
+            return null;
+        }
+        return (E)list.last.value;
+    }
 
     public Iterator<E> iterator() {
         return new DequeIterator();
