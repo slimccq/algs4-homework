@@ -1,6 +1,7 @@
 package exercise.chapter1.section4;
 
 import edu.princeton.cs.algs4.StdOut;
+import exercise.chapter1.BinarySearch;
 import exercise.common.RandUtil;
 import exercise.common.Utility;
 
@@ -74,48 +75,9 @@ public class Exercise8_CountPair {
         int N = a.length;
         Arrays.sort(a); // quick sort
         for (int i = 0; i < N; i++) {
-            int freq = count(a, i + 1, N, a[i]);
+            int freq = BinarySearch.countInt(a, i + 1, N, a[i]);
             cnt += freq / 2;
         }
         return cnt;
-    }
-
-    // 返回小于该key的元素数量
-    public static int lessThan(int[] a, int lo, int hi, int key) {
-        while (lo < hi) {
-            int mid = lo + (hi - lo) / 2;
-            if (a[mid] >= key) {
-                hi = mid;
-            } else if (a[mid] < key) {
-                lo = mid + 1;
-            }
-        }
-        return lo;
-    }
-
-    // 小于等于key的元素数量
-    public static int lessEqual(int[] a, int lo, int hi, int key) {
-        while (lo < hi) {
-            int mid = lo + (hi - lo) / 2;
-            if (a[mid] <= key) {
-                lo = mid + 1;
-            } else if (a[mid] > key) {
-                hi = mid;
-            }
-        }
-        return hi;
-    }
-
-    // 等于key的元素数量
-    public static int count(int[] a, int lo, int hi, int key) {
-        int start = lessThan(a, lo, hi, key);
-        if (start >= a.length) {
-            return 0;
-        }
-        int end = lessEqual(a, lo, hi, key);
-        if (end >= a.length) {
-            return 0;
-        }
-        return end - start;
     }
 }

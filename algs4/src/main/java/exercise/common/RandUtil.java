@@ -50,7 +50,15 @@ public class RandUtil {
         return arr;
     }
 
-    public static Double[] randDoubleArray(int N) {
+    public static double[] randDoubleArray(int N) {
+        double[] arr = new double[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = 100 * StdRandom.uniform();
+        }
+        return arr;
+    }
+
+    public static Double[] randDoubleObjectArray(int N) {
         Double[] arr = new Double[N];
         for (int i = 0; i < N; i++) {
             arr[i] = StdRandom.uniform();

@@ -52,20 +52,4 @@ public class Exercise2_ThreeSum {
         }
         return cnt;
     }
-
-    // 使用set查找
-    public static int threeSum3(int[] a)
-    {
-        int N = a.length;
-        int cnt = 0;
-        Set<Integer> set = new HashSet<>(N);
-        for (int i = 0; i < N; i++) {
-            for (int j = i+1; j < N; j++) {
-                if (set.contains(-a[i]-a[j])) {
-                    cnt++;
-                }
-            }
-        }
-        return cnt;
-    }
 }
