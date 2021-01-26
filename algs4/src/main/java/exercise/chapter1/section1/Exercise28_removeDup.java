@@ -24,8 +24,13 @@ public class Exercise28_removeDup {
 
         StdOut.printf("after remove dup:\n");
         Utility.printArray(arr);
-    }
 
+        Integer[] a = RandUtil.randIntegerArray(N);
+        Arrays.sort(a);
+        Integer[] dup = removeDup(a);
+        StdOut.printf("after remove dup:\n");
+        Utility.printArray(dup);
+    }
 
     // 删除重复
     public static int[] removeDup(int[] sorted) {
@@ -43,5 +48,22 @@ public class Exercise28_removeDup {
         return Arrays.copyOfRange(copy, 0, idx+1);
     }
 
-
+    // 删除重复(原地删除）
+    public static Integer[] removeDup(Integer[] sorted) {
+        if (sorted.length <= 1) {
+            return sorted;
+        }
+        int idx = 0;
+        for (int i = 1; i < sorted.length; i++) {
+            if (sorted[i].equals(sorted[idx])) {
+                sorted[i] = null;
+            } else {
+                sorted[++idx] = sorted[i];
+            }
+        }
+        for (int i = idx; i < sorted.length; i++) {
+            sorted[i] = null;
+        }
+        return sorted;
+    }
 }

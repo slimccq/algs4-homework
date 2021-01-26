@@ -5,21 +5,27 @@ import edu.princeton.cs.algs4.StdOut;
 // 计算Fibonacci
 public class Exercise19_fibonacci {
     public static void main(String[] args) {
-        long n = 50;
+        int n = 50;
         int method = 3;
         if (args.length > 1) {
-            n = Long.parseLong(args[1]);
+            n = Integer.parseInt(args[1]);
             if (args.length > 2) {
                 method = Integer.parseInt(args[2]);
             }
         }
-        StdOut.printf("start calc fib %d...\n", n);
+        StdOut.printf("start calc fib %d using method %d\n", n, method);
         long r = 0;
         long startAt = System.currentTimeMillis();
         switch (method) {
-            case 1: r = fib_slow(n); break;
-            case 2: r = fib_dp(n); break;
-            case 3: r = fib_fast(n); break;
+            case 1:
+                r = fib_slow(n);
+                break;
+            case 2:
+                r = fib_dp(n);
+                break;
+            case 3:
+                r = fib_fast(n);
+                break;
         }
         long costTime = System.currentTimeMillis() - startAt;
         StdOut.printf("fib %d is %d, cost %dms\n", n, r, costTime);
@@ -33,25 +39,24 @@ public class Exercise19_fibonacci {
     }
 
     // 使用临时数组
-    public static long fib_dp(long n) {
-        long[] arr = new long[(int)(n+1)];
+    public static long fib_dp(int n) {
+        long[] arr = new long[n + 1];
         return fib_dp_helper(arr, n);
     }
 
-    public static long fib_dp_helper(long[] a, long n) {
+    public static long fib_dp_helper(long[] a, int n) {
         if (n == 1 || n == 2)
             return 1;
-        if (a[(int) n] == 0) {
+        if (a[n] == 0) {
             long n1 = fib_dp_helper(a, n - 1);
             long n2 = fib_dp_helper(a, n - 2);
-            a[(int) n] = n1 + n2;
+            a[n] = n1 + n2;
         }
-        return a[(int) n];
+        return a[n];
     }
 
-
     // 使用临时变量
-    public static long fib_fast(long n) {
+    public static long fib_fast(int n) {
         if (n == 1 || n == 2)
             return 1;
         long n1 = 1;

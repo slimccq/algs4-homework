@@ -63,7 +63,7 @@ public class Exercise8_CountPair {
             int occur = map.getOrDefault(a[i], 0);
             map.put(a[i], occur+1);
         }
-        for (var entry : map.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             cnt += entry.getValue() / 2;
         }
         return cnt;
