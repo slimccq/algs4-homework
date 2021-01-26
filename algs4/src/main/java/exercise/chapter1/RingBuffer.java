@@ -8,6 +8,12 @@ public class RingBuffer<E> implements Iterable<E> {
     private int reader = 0;
     private int writer = -1;
 
+    public static final int DEFAULT_CAPACITY = 8;
+
+    public RingBuffer() {
+        this(DEFAULT_CAPACITY);
+    }
+
     public RingBuffer(int capacity) {
         this.capacity = capacity;
         this.buffer = (E[]) new Object[capacity];
@@ -23,7 +29,7 @@ public class RingBuffer<E> implements Iterable<E> {
         if (isEmpty()) {
             return null;
         }
-        int idx = reader++ % capacity;
+        int idx = (reader + 1) % capacity;
         return buffer[idx];
     }
 
@@ -49,6 +55,7 @@ public class RingBuffer<E> implements Iterable<E> {
         return size() == capacity;
     }
 
+    @Override
     public Iterator<E> iterator() {
         return new RingIterator();
     }
@@ -56,10 +63,12 @@ public class RingBuffer<E> implements Iterable<E> {
     public class RingIterator implements Iterator<E> {
         private int idx = reader;
 
+        @Override
         public boolean hasNext() {
             return idx <= writer;
         }
 
+        @Override
         public E next() {
             return buffer[idx++ % capacity];
         }

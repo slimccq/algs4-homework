@@ -40,6 +40,7 @@ public class RandomBag implements Iterable<Object> {
         bag[N++] = e;
     }
 
+    @Override
     public Iterator<Object> iterator() {
         return new BagIterator();
     }
@@ -48,13 +49,16 @@ public class RandomBag implements Iterable<Object> {
         int idx = 0;
 
         BagIterator() {
+            // 打乱顺序
             RandUtil.shuffleArray(bag, N);
         }
 
+        @Override
         public boolean hasNext() {
             return idx < N;
         }
 
+        @Override
         public Object next() {
             return bag[idx++];
         }

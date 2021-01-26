@@ -1,6 +1,5 @@
 package exercise.chapter1;
 
-import edu.princeton.cs.algs4.StdOut;
 
 // 循环链表
 public class CircularList {
@@ -42,7 +41,7 @@ public class CircularList {
         } else {
             node.next = first;
         }
-        node.next = first;
+        last.next = node;
         first = node;
     }
 
@@ -54,7 +53,6 @@ public class CircularList {
         ListNode node = first;
         first = node.next;
         return node;
-
     }
 
     // 删除尾节点
@@ -79,6 +77,5 @@ public class CircularList {
         public ListNode(Object value) {
             this.value = value;
         }
-
     }
 }

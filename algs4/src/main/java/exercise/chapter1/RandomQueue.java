@@ -3,7 +3,7 @@ package exercise.chapter1;
 import java.util.Iterator;
 import java.util.Random;
 
-public class RandomQueue<E> implements Iterable<Object> {
+public class RandomQueue<E> implements Iterable<E> {
     private E[] array = null;
     private int N = 0;
 
@@ -58,18 +58,21 @@ public class RandomQueue<E> implements Iterable<Object> {
     }
 
     // exercise 1.3.36
-    public Iterator<Object> iterator() {
+    @Override
+    public Iterator<E> iterator() {
         return new QueueIterator();
     }
 
-    private class QueueIterator implements Iterator<Object> {
+    private class QueueIterator implements Iterator<E> {
         int idx = 0;
 
+        @Override
         public boolean hasNext() {
             return idx < N;
         }
 
-        public Object next() {
+        @Override
+        public E next() {
             return array[idx++];
         }
     }

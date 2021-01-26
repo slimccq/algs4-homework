@@ -12,10 +12,12 @@ public class ListQueue<E> implements GeneralizedQueue<E> {
         list = new DoubleLinkedList();
     }
 
+    @Override
     public int size() {
         return N;
     }
 
+    @Override
     public boolean isEmpty() {
         return N == 0;
     }
@@ -33,12 +35,14 @@ public class ListQueue<E> implements GeneralizedQueue<E> {
         return (E)node.value;
     }
 
+    @Override
     public void insert(E e) {
         DoubleLinkedList.LinkedNode node = new DoubleLinkedList.LinkedNode(e);
         list.insertTail(node);
         N++;
     }
 
+    @Override
     public E delete(int k) {
         if (k <= 0 || k > N) {
             return null;
@@ -56,6 +60,7 @@ public class ListQueue<E> implements GeneralizedQueue<E> {
         return null;
     }
 
+    @Override
     public Iterator<E> iterator() {
         return new QueueIterator();
     }

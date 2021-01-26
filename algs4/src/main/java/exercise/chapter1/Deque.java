@@ -63,13 +63,18 @@ public class Deque<E> implements Iterable<E>
         return (E)list.last.value;
     }
 
+    @Override
     public Iterator<E> iterator() {
         return new DequeIterator();
     }
 
     private class DequeIterator implements Iterator<E> {
         private DoubleLinkedList.LinkedNode node = list.sentinel;
+
+        @Override
         public boolean hasNext() { return node.next != null; }
+
+        @Override
         public E next() {
             node = node.next;
             return (E)node.value;

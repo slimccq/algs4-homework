@@ -52,6 +52,7 @@ public class FixedCapacityStack<E> implements Iterable<E> {
         return e;
     }
 
+    @Override
     public Iterator<E> iterator() {
         return new StackIterator();
     }
@@ -59,10 +60,12 @@ public class FixedCapacityStack<E> implements Iterable<E> {
     private class StackIterator implements Iterator<E> {
         private int idx = 0; // from bottom to top
 
+        @Override
         public boolean hasNext() {
             return idx < size;
         }
 
+        @Override
         public E next() {
             return array[idx++];
         }

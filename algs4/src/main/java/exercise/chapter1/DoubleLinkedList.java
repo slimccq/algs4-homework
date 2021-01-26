@@ -5,8 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 
 // 双端链表 Exercise 1.3.31
 public class DoubleLinkedList {
-
-    // first dummy sentinel node
+    // 头部哨兵节点
     public LinkedNode sentinel = new LinkedNode(null);
     public LinkedNode last = null;
 
@@ -16,7 +15,7 @@ public class DoubleLinkedList {
     public int size() {
         int n = 0;
         LinkedNode node = sentinel.next;
-        while(node != null) {
+        while (node != null) {
             node = node.next;
             n++;
         }
@@ -30,25 +29,24 @@ public class DoubleLinkedList {
     // 在头部插入节点
     public void insertHead(LinkedNode node) {
         LinkedNode head = sentinel.next;
-        if (head == null) {
-            last = node;
-        } else {
-            head.prev = node;
-        }
         node.next = head;
         node.prev = sentinel;
         sentinel.next = node;
+        if (head != null) {
+            head.prev = node;
+        } else {
+            last = node;
+        }
     }
 
     // 在尾部插入节点
     public void insertTail(LinkedNode node) {
-        if (sentinel.next == null) {
-            sentinel.next = node;
-            node.prev = sentinel;
-        } else {
-            last.next = node;
-            node.prev = last;
+        LinkedNode tail = last;
+        if (tail == null) {
+            tail = sentinel;
         }
+        tail.next = node;
+        node.prev = tail;
         last = node;
     }
 
@@ -65,7 +63,7 @@ public class DoubleLinkedList {
     // Exercise 1.3.25, 把节点b插入到节点a后
     public void insertAfter(LinkedNode a, LinkedNode b) {
         if (a == null || b == null) {
-            return ;
+            return;
         }
         if (a.next != null) {
             a.next.prev = b;
@@ -76,10 +74,9 @@ public class DoubleLinkedList {
     }
 
     // remove node in list
-    public void remove(LinkedNode node)
-    {
+    public void remove(LinkedNode node) {
         if (node == null) {
-            return ;
+            return;
         }
         LinkedNode prev = node.prev;
         LinkedNode next = node.next;
@@ -92,7 +89,11 @@ public class DoubleLinkedList {
         node.prev = null;
         node.next = null;
         if (node == last) {
-            last = prev == sentinel ? null : prev;
+            if (prev == sentinel) {
+                last = null;
+            } else {
+                last = prev;
+            }
         }
     }
 
@@ -103,7 +104,9 @@ public class DoubleLinkedList {
             return null;
         }
         sentinel.next = head.next;
-        head.next.prev = sentinel;
+        if (head.next != null) {
+            head.next.prev = sentinel;
+        }
         head.prev = null;
         head.next = null;
         return head;
@@ -111,20 +114,27 @@ public class DoubleLinkedList {
 
     // 删除尾节点
     public LinkedNode removeTail() {
+        if (last == null) {
+            return null;
+        }
         LinkedNode prev = last.prev;
         LinkedNode node = last;
         if (prev != null) {
             prev.next = null;
         }
         last.prev = null;
-        last = prev;
+        if (prev != sentinel) {
+            last = prev;
+        } else {
+            last = null;
+        }
         return node;
     }
 
     // Exercise 1.3.24, 删除node以后的节点
     public void removeAfter(LinkedNode node) {
         if (node == null) {
-            return ;
+            return;
         }
         if (node.next != null) {
             node.next.prev = null;

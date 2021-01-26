@@ -18,6 +18,19 @@ public class Utility {
         StdOut.println();
     }
 
+    public static void printArray(Number[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == null) {
+                break;
+            }
+            if (i > 0 && i % 10 == 0) {
+                StdOut.println();
+            }
+            StdOut.printf("%2d, ", arr[i]);
+        }
+        StdOut.println();
+    }
+
     public static void printArray(double[] arr) {
         for (int i = 0; i < arr.length; i++) {
             if (i > 0 && i % 10 == 0) {

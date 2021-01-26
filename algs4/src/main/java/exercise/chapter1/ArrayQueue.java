@@ -8,26 +8,32 @@ public class ArrayQueue<E> implements GeneralizedQueue<E> {
     private E[] arr = null;
     private int N = 0;
 
+    public static final int DEFAULT_CAPACITY = 4;
+
     public ArrayQueue() {
-        this(1);
+        this(DEFAULT_CAPACITY);
     }
 
     public ArrayQueue(int capacity) {
         arr = (E[]) new  Object[capacity];
     }
 
+    @Override
     public int size() {
         return N;
     }
 
+    @Override
     public boolean isEmpty() {
         return N == 0;
     }
 
+    @Override
     public void insert(E e) {
         arr[N++] = e;
     }
 
+    @Override
     public E delete(int k) {
         if (k <= 0 || k > N) {
             return null;
@@ -40,6 +46,15 @@ public class ArrayQueue<E> implements GeneralizedQueue<E> {
         return v;
     }
 
+    public void enqueue(E e) {
+        insert(e);
+    }
+
+    public E dequeue() {
+        return delete(1);
+    }
+
+    @Override
     public Iterator<E> iterator() {
         return new QueueIterator();
     }
@@ -47,10 +62,12 @@ public class ArrayQueue<E> implements GeneralizedQueue<E> {
     private class QueueIterator implements Iterator<E> {
         private int idx = 0;
 
+        @Override
         public boolean hasNext() {
             return idx < N;
         }
 
+        @Override
         public E next() {
             return arr[idx++];
         }

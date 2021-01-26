@@ -14,9 +14,9 @@ public class BinarySearch {
             int cmp = a[mid].compareTo(key);
             if (cmp == 0) {
                 return mid;
-            } else if (cmp > 0) { // a[mid] > key
+            } else if (cmp > 0) { // key < a[mid]
                 hi = mid;
-            } else if (cmp < 0) { //(a[mid] < key)
+            } else if (cmp < 0) { // key > a[mid]
                 lo = mid + 1;
             }
         }
@@ -32,9 +32,9 @@ public class BinarySearch {
         while (lo < hi) {
             int mid = lo + (hi - lo) / 2;
             int cmp = a[mid].compareTo(key);
-            if (cmp >= 0) {
+            if (cmp >= 0) { // key <= a[mid]
                 hi = mid;
-            } else if (cmp < 0) { // a[mid] < key)
+            } else if (cmp < 0) { // key > a[mid]
                 lo = mid + 1;
             }
         }
@@ -50,9 +50,9 @@ public class BinarySearch {
         while (lo < hi) {
             int mid = lo + (hi - lo) / 2;
             int cmp = a[mid].compareTo(key);
-            if (cmp <= 0) { // a[mid] <= key
+            if (cmp <= 0) { // key >= a[mid]
                 lo = mid + 1;
-            } else if (cmp > 0) { // a[mid] > key
+            } else if (cmp > 0) { // key < a[mid]
                 hi = mid;
             }
         }

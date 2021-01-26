@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 
 // 单链表
 public class LinkedList {
-    // first dummy sentinel node
+    // 哨兵头节点
     public LinkedNode sentinel = new LinkedNode(null);
 
     public LinkedList() {
@@ -48,14 +48,15 @@ public class LinkedList {
 
     // 尾部插入
     public void insertTail(LinkedNode node) {
-        LinkedNode last = sentinel.next;
-        while(last != null && last.next != null) {
+        LinkedNode last = sentinel;
+        while(last.next != null) {
             last = last.next;
         }
         last.next = node;
     }
 
     // Exercise 1.3.25
+    // 把b插入到a后面
     public void insertAfter(LinkedNode a, LinkedNode b) {
         b.next = a.next;
         a.next = b;

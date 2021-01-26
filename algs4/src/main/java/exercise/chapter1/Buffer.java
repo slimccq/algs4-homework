@@ -44,13 +44,17 @@ public class Buffer {
         }
     }
 
+    @Override
     public String toString() {
-        String rightS = "";
-        if (!right.isEmpty()) {
-            // 右边的栈需要先反转
-            StringBuilder sb = new StringBuilder(right.toString());
-            rightS = sb.reverse().toString();
+        if (right.isEmpty()) {
+            return left.toString();
         }
-        return left.toString() + rightS;
+        // 右边的栈需要先反转
+        StringBuilder sb = new StringBuilder();
+        ArrayStack<Character> copy = new ArrayStack<>(right);
+        while (!copy.isEmpty()) {
+            sb.append(copy.pop());
+        }
+        return left.toString() + sb.toString();
     }
 }

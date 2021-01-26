@@ -20,6 +20,14 @@ public class ArrayStack<E> implements Iterable<E> {
         array = (E[]) new Object[capacity];
     }
 
+    public ArrayStack(ArrayStack<E> stack) {
+        this(stack.size);
+        for (int i = 0; i < stack.size; i++) {
+            this.array[i] = stack.array[i];
+        }
+        this.size = stack.size;
+    }
+
     public int size() {
         return size;
     }
@@ -28,7 +36,7 @@ public class ArrayStack<E> implements Iterable<E> {
         return size == 0;
     }
 
-    private void resize(int newsize) {
+    private void growTo(int newsize) {
         E[] array = (E[]) new Object[newsize];
         for (int i = 0; i < size; i++) {
             array[i] = this.array[i];
@@ -38,7 +46,7 @@ public class ArrayStack<E> implements Iterable<E> {
 
     public void push(E v) {
         if (size >= array.length) {
-            resize(size * 2);
+            growTo(size * 2);
         }
         array[size++] = v;
     }
@@ -60,6 +68,7 @@ public class ArrayStack<E> implements Iterable<E> {
         return array[size - 1];
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < size; i++) {
@@ -68,6 +77,7 @@ public class ArrayStack<E> implements Iterable<E> {
         return sb.toString();
     }
 
+    @Override
     public Iterator<E> iterator() {
         return new StackIterator();
     }
@@ -75,10 +85,12 @@ public class ArrayStack<E> implements Iterable<E> {
     private class StackIterator implements Iterator<E> {
         private int idx = 0; // from bottom to top
 
+        @Override
         public boolean hasNext() {
             return idx < size;
         }
 
+        @Override
         public E next() {
             return array[idx++];
         }

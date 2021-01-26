@@ -1,6 +1,7 @@
 package exercise.chapter1;
 
-// Exercise 1.3.32 以linked list实现的queue和stack
+// Exercise 1.3.32
+// 以linked list实现的queue和stack
 public class Steque<E>
 {
     DoubleLinkedList list = null;
@@ -32,6 +33,9 @@ public class Steque<E>
     // pop tail item
     public E pop()
     {
+        if (n == 0) {
+            return null;
+        }
         DoubleLinkedList.LinkedNode node = list.removeTail();
         n--;
         return (E)node.value;
@@ -43,5 +47,14 @@ public class Steque<E>
         DoubleLinkedList.LinkedNode node = new DoubleLinkedList.LinkedNode(e);
         list.insertHead(node);
         n++;
+    }
+
+    public E dequeue() {
+        if (n == 0) {
+            return null;
+        }
+        DoubleLinkedList.LinkedNode node = list.removeTail();
+        n--;
+        return (E)node.value;
     }
 }

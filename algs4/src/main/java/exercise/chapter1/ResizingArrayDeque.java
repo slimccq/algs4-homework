@@ -69,13 +69,18 @@ public class ResizingArrayDeque<E> implements Iterable<E>
         return value;
     }
 
+    @Override
     public Iterator<E> iterator() {
         return new DequeIterator();
     }
 
     private class DequeIterator implements Iterator<E> {
         private int n = 0;
+
+        @Override
         public boolean hasNext() { return N > 0 && n != N; }
+
+        @Override
         public E next() { return a[n++]; }
     }
 
