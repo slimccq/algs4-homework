@@ -22,8 +22,8 @@ public class ArrayStack<E> implements Iterable<E> {
 
     public ArrayStack(ArrayStack<E> stack) {
         this(stack.size);
-        for (int i = 0; i < stack.size; i++) {
-            this.array[i] = stack.array[i];
+        if (stack.size >= 0) {
+            System.arraycopy(stack.array, 0, this.array, 0, stack.size);
         }
         this.size = stack.size;
     }
@@ -38,8 +38,8 @@ public class ArrayStack<E> implements Iterable<E> {
 
     private void growTo(int newsize) {
         E[] array = (E[]) new Object[newsize];
-        for (int i = 0; i < size; i++) {
-            array[i] = this.array[i];
+        if (size >= 0) {
+            System.arraycopy(this.array, 0, array, 0, size);
         }
         this.array = array;
     }

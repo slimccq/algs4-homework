@@ -149,8 +149,8 @@ public class DoubleLinkedList {
         if (n == 0) {
             return list;
         }
-        for (int i = 0; i < n; i++) {
-            LinkedNode node = new LinkedNode(array[i]);
+        for (Integer integer : array) {
+            LinkedNode node = new LinkedNode(integer);
             list.insertTail(node);
         }
         return list;

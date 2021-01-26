@@ -4,12 +4,11 @@ package exercise.chapter1;
 // 以linked list实现的queue和stack
 public class Steque<E>
 {
-    DoubleLinkedList list = null;
+    DoubleLinkedList list = new DoubleLinkedList();;
     private int n = 0;
 
     public Steque()
     {
-        list = new DoubleLinkedList();
     }
 
     public boolean isEmpty()

@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class RandomQueue<E> implements Iterable<E> {
-    private E[] array = null;
+    private E[] array;
     private int N = 0;
 
     public RandomQueue() {

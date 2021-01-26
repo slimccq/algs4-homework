@@ -3,12 +3,11 @@ package exercise.chapter1;
 
 // 循环链表
 public class CircularList {
-    // first dummy node
-    public ListNode first = null;
-    public ListNode last = null;
+
+    public ListNode first;
+    public ListNode last;
 
     public CircularList() {
-        last = first;
     }
 
     public int size() {

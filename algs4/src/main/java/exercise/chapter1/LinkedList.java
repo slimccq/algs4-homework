@@ -75,8 +75,8 @@ public class LinkedList {
             return list;
         }
         LinkedNode prev = list.sentinel;
-        for (int i = 0; i < n; i++) {
-            LinkedNode node = new LinkedNode(null, array[i]);
+        for (Integer integer : array) {
+            LinkedNode node = new LinkedNode(null, integer);
             prev.next = node;
             prev = node;
         }

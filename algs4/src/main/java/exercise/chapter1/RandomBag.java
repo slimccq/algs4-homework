@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 // 随机背包
 public class RandomBag implements Iterable<Object> {
-    private Object[] bag = null;
+    private Object[] bag;
     private int N = 0;
 
     public RandomBag() {

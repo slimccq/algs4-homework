@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Iterator;
 
 public class ArrayQueue<E> implements GeneralizedQueue<E> {
-    private E[] arr = null;
+    private E[] arr;
     private int N = 0;
 
     public static final int DEFAULT_CAPACITY = 4;

@@ -5,12 +5,11 @@ import java.util.*;
 // 链表实现的双向队列
 public class Deque<E> implements Iterable<E>
 {
-    DoubleLinkedList list = null;
+    DoubleLinkedList list = new DoubleLinkedList();;
     private int n = 0;
 
     public Deque()
     {
-        list = new DoubleLinkedList();
     }
 
     public boolean isEmpty() {
