@@ -69,7 +69,7 @@ public class BinarySearch {
         if (start >= hi) {
             return 0;
         }
-        int end = lessEqual(a, lo, hi, key);
+        int end = lessEqual(a, start, hi, key);
         if (end >= hi) {
             return 0;
         }
@@ -138,7 +138,7 @@ public class BinarySearch {
         if (start >= hi) {
             return 0;
         }
-        int end = lessEqualInt(a, lo, hi, key);
+        int end = lessEqualInt(a, start, hi, key);
         if (end >= hi) {
             return 0;
         }

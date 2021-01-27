@@ -24,6 +24,20 @@ public class RandUtil {
         return arr;
     }
 
+    // 随机M个重复值
+    public static int[] randIntArray(int N, int M) {
+        int[] arr = new int[N];
+        for (int i = 0; i < N; i++) {
+            if (i > 0 && M > 0 && StdRandom.bernoulli()) {
+                M--;
+                int idx = StdRandom.uniform(i);
+                arr[i] = arr[idx];
+            }
+            arr[i] = StdRandom.uniform(100);
+        }
+        return arr;
+    }
+
     // 随机不重复数组
     public static int[] randUniqueIntArray(int N) {
         Set<Integer> exist = new HashSet<>();
