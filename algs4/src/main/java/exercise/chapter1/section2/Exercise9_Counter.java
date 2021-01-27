@@ -7,7 +7,7 @@ import exercise.common.Utility;
 
 import java.util.Arrays;
 
-// Counter
+// 二分查找划分次数
 public class Exercise9_Counter {
    public static void main(String[] args)
    {

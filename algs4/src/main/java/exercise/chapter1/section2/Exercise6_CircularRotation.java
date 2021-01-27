@@ -16,6 +16,7 @@ public class Exercise6_CircularRotation {
         StdOut.printf("%s and %s %s circular rotation\n", s1, s2, f ? "is" : "is not");
     }
 
+    // 连接2个字符串s把环展开
     public static boolean isCircularRotation(String s1, String s2)
     {
         if (s1.length() == s2.length()) {
