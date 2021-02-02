@@ -16,12 +16,12 @@ public class Exercise14_4sum {
         }
         int[] a = RandUtil.randIntArray(N);
         Utility.printArray(a);
-        int cnt = foursum(a);
+        int cnt = fourSum(a);
         StdOut.printf("4sum: %d\n", cnt);
 
     }
 
-    public static int foursum(int[] a) {
+    public static int fourSum(int[] a) {
         Arrays.sort(a);
         int cnt = 0;
         int N = a.length;

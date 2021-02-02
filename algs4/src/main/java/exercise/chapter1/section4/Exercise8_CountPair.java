@@ -7,7 +7,7 @@ import exercise.common.Utility;
 
 import java.util.*;
 
-// 计算出相等的整数对
+// 计算出相等的整数对数量
 public class Exercise8_CountPair {
     public static void main(String[] args) {
         int N = 20;
