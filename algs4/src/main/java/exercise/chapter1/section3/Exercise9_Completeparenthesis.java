@@ -19,7 +19,7 @@ public class Exercise9_Completeparenthesis
         StdOut.printf("output: %s\n", output);
     }
 
-    private static String[] operators = new String[]{"+","-","*","/"};
+    private static final String[] operators = new String[]{"+","-","*","/"};
 
     public static int findOperator(String token) {
         for (int i = 0; i < operators.length; i++) {

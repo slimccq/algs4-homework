@@ -29,7 +29,7 @@ public class Exercise27_ListMax {
         StdOut.printf("%d\n", max);
     }
 
-    // 最大值
+    // 单链表最大值
     public static int maxElement(LinkedList slist) {
         LinkedList.LinkedNode node = slist.sentinel.next;
         int max = (int)node.value;
@@ -42,7 +42,7 @@ public class Exercise27_ListMax {
         return max;
     }
 
-    // 最大值
+    // 双链表最大值
     public static int maxElement(DoubleLinkedList dlist) {
         DoubleLinkedList.LinkedNode node = dlist.sentinel.next;
         int max = (int)node.value;

@@ -3,7 +3,7 @@ package exercise.chapter1.section3;
 import edu.princeton.cs.algs4.StdOut;
 import exercise.chapter1.Deque;
 
-// deque
+// 链表实现deque
 public class Exercise33_Deque {
     public static void main(String[] args) {
         Deque<Integer> deque = new Deque<>();

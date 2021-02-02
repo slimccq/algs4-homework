@@ -3,6 +3,7 @@ package exercise.chapter1.section3;
 import edu.princeton.cs.algs4.StdOut;
 import exercise.chapter1.ResizingArrayDeque;
 
+// 数组实现deque
 public class Exercise33_ArrayDeque {
     public static void main(String args[]) {
         ResizingArrayDeque<Integer> deq = new ResizingArrayDeque<>();

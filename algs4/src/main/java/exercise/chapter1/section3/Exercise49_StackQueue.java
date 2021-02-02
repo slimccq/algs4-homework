@@ -1,12 +1,25 @@
 package exercise.chapter1.section3;
 
+import edu.princeton.cs.algs4.StdOut;
 import exercise.chapter1.ArrayStack;
 import exercise.chapter1.ListQueue;
 
 // 栈实现的队列
 public class Exercise49_StackQueue {
     public static void main(String[] args) {
-
+        int N = 10;
+        if (args.length > 1) {
+            N = Integer.parseInt(args[1]);
+        }
+        StackQueue<Integer> que = new StackQueue <>();
+        for (int i = 0; i < N; i++) {
+            que.enqueue(i);
+        }
+        for (int i = 0; i < N; i++) {
+            Integer n = que.dequeue();
+            StdOut.printf("%d ", n);
+        }
+        StdOut.println();
     }
 
     // 队列实现的栈
@@ -21,8 +34,7 @@ public class Exercise49_StackQueue {
             return size() == 0;
         }
 
-        public void push(E e)
-        {
+        public void push(E e) {
             int cursize = queue.size();
             queue.enqueue(e);
 
@@ -33,8 +45,7 @@ public class Exercise49_StackQueue {
             }
         }
 
-        public E pop()
-        {
+        public E pop() {
             return queue.dequeue();
         }
     }

@@ -8,8 +8,8 @@ import edu.princeton.cs.algs4.StdOut;
 // 括号是否配对匹配
 public class Exercise4_Parentheses {
 
-    private static char[] leftOps = new char[]{'[', '(', '{'};
-    private static char[] rightOps = new char[]{']', ')', '}'};
+    private static final char[] leftOps = new char[]{'[', '(', '{'};
+    private static final char[] rightOps = new char[]{']', ')', '}'};
 
     public static void main(String[] args) {
         while (!StdIn.isEmpty()) {

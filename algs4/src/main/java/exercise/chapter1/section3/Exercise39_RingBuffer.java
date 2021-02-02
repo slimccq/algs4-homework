@@ -3,7 +3,7 @@ package exercise.chapter1.section3;
 import edu.princeton.cs.algs4.StdOut;
 import exercise.chapter1.RingBuffer;
 
-// RingBuffer
+// 环形缓冲区
 public class Exercise39_RingBuffer {
     public static void main(String[] args) {
         int N = 10;

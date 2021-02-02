@@ -5,6 +5,7 @@ import exercise.chapter1.CircularList;
 
 import java.util.Iterator;
 
+// circular list实现queue
 public class Exercise29_Queue {
     public static void main(String[] args)
     {

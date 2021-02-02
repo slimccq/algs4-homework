@@ -19,6 +19,7 @@ public class Exercise40_MoveToFront {
         }
     }
 
+    // 读取了一个重复的字符时,将它从链表中删去并再次插入表头
     public static void removeOld(LinkedList list, char c) {
         LinkedList.LinkedNode node = list.sentinel;
         while (node.next != null) {

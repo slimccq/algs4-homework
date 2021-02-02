@@ -1,5 +1,6 @@
 package exercise.chapter1.section3;
 
+import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
@@ -9,10 +10,10 @@ import java.util.Scanner;
 
 // 中缀表达式转换为后缀表达式
 public class Exercise10_Infix {
-    private static String[] leftOps = new String[]{"(", "[", "{"};
-    private static String[] rightOps = new String[]{")", "]", "}"};
-    public static String[] operators = new String[]{"+", "-", "*", "/"};
-    public static int[] precedence = new int[]{1, 1, 2, 2}; //操作符优先级
+    private static final String[] leftOps = new String[]{"(", "[", "{"};
+    private static final String[] rightOps = new String[]{")", "]", "}"};
+    public static final String[] operators = new String[]{"+", "-", "*", "/"};
+    public static final int[] precedence = new int[]{1, 1, 2, 2}; //操作符优先级
 
     public static void main(String[] args) {
         String input = "3 + 4 + 2 * 3 * 6 - 4 * 2";

@@ -5,6 +5,7 @@ import exercise.chapter1.ArrayQueue;
 import exercise.chapter1.GeneralizedQueue;
 import exercise.chapter1.ListQueue;
 
+// 数组和链表实现queue
 public class Exercise38_GeneralizedQueue {
     public static void main(String[] args) {
         int N = 3;

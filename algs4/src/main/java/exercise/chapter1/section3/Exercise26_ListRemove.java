@@ -5,7 +5,7 @@ import exercise.chapter1.DoubleLinkedList;
 import exercise.chapter1.LinkedList;
 import exercise.common.RandUtil;
 
-// 根据key删除链表尾节点
+// 根据key删除链表节点
 public class Exercise26_ListRemove {
     public static void main(String[] args)
     {
