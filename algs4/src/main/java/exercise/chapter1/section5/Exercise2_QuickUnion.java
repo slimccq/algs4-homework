@@ -2,9 +2,9 @@ package exercise.chapter1.section5;
 
 import edu.princeton.cs.algs4.StdOut;
 
-public class Exercise1_QuickFind {
+public class Exercise2_QuickUnion {
     private static int[] id;
-    private static int read = 0; //
+    private static int read = 0; // 访问次数
     private static int write = 0; //
 
     private static void init(int N) {
@@ -14,9 +14,13 @@ public class Exercise1_QuickFind {
         }
     }
 
-    private static int find(int q) {
+    private static int find(int p) {
         read++;
-        return id[q];
+        while(p != id[p]) {
+            read++;
+            p = id[p];
+        }
+        return p;
     }
 
     private static void union(int p, int q) {
@@ -25,13 +29,9 @@ public class Exercise1_QuickFind {
         if (k == j) {
             return ;
         }
-        for (int i = 0; i < id.length; i++) {
-            read++;
-            if (id[p] == j) {
-                write++;
-                id[p] = k;
-            }
-        }
+        write++;
+        id[j] = k;
+        read++;
     }
 
     private static void show(int p, int q) {
@@ -41,7 +41,7 @@ public class Exercise1_QuickFind {
             StdOut.printf("%d, ", id[i]);
         }
         StdOut.println();
-        StdOut.printf("\tread write: %d / %d\n", read, write);
+        StdOut.printf("\tread write:  %d / %d\n", read, write);
     }
 
     public static void main(String[] args) {
@@ -58,7 +58,6 @@ public class Exercise1_QuickFind {
         init(input.length);
         for (int i = 0; i < input.length; i+= 2) {
             read = 0;
-            write = 0;
             int p = input[i];
             int q = input[i+1];
             //StdOut.printf("%d %d\n", p, q);

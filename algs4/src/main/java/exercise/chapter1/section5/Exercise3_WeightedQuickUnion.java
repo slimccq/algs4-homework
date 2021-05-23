@@ -2,35 +2,46 @@ package exercise.chapter1.section5;
 
 import edu.princeton.cs.algs4.StdOut;
 
-public class Exercise1_QuickFind {
+public class Exercise3_WeightedQuickUnion {
     private static int[] id;
-    private static int read = 0; //
-    private static int write = 0; //
+    private static int[] sz;
+    private static int read = 0;
+    private static int write = 0;
 
     private static void init(int N) {
         id = new int[N];
+        sz = new int[N];
         for (int i = 0; i < id.length; i++) {
             id[i] = i;
         }
+        for (int i = 0; i < sz.length; i++) {
+            sz[i] = 1;
+        }
     }
 
-    private static int find(int q) {
+    private static int find(int p) {
         read++;
-        return id[q];
+        while(p != id[p])
+            read++;
+            p = id[p];
+        return p;
     }
 
     private static void union(int p, int q) {
-        int j = find(p);
-        int k = find(q);
-        if (k == j) {
+        int i = find(p);
+        int j = find(q);
+        if (i == j) {
             return ;
         }
-        for (int i = 0; i < id.length; i++) {
-            read++;
-            if (id[p] == j) {
-                write++;
-                id[p] = k;
-            }
+        read += 2;
+        if (sz[i] < sz[j]) {
+            write++;
+            id[i] = j;
+            sz[j] += sz[i];
+        } else {
+            write++;
+            id[j] = i;
+            sz[i] += sz[j];
         }
     }
 
