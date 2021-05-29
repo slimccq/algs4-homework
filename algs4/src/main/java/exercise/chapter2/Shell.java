@@ -2,6 +2,7 @@ package exercise.chapter2;
 
 import edu.princeton.cs.algs4.*;
 import exercise.chapter2.SortUtil;
+import exercise.common.RandUtil;
 
 import java.awt.*;
 
@@ -124,7 +125,7 @@ public class Shell extends SortUtil
 
     public static void benchmark(String[] args) {
         int N = Integer.parseInt(args[0]);
-        Integer[] arr = SortUtil.randomIntArray(N);
+        Integer[] arr = RandUtil.randomIntArray(N);
         StdOut.printf("shell sort %d length array\n", N);
         Shell.sort(arr);
     }

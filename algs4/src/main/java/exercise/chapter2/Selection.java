@@ -1,6 +1,7 @@
 package exercise.chapter2;
 
 import edu.princeton.cs.algs4.StdDraw;
+import exercise.common.RandUtil;
 
 // 选择排序
 public class Selection extends SortUtil
@@ -86,7 +87,7 @@ public class Selection extends SortUtil
         StdDraw.setCanvasSize(160, 640);
         StdDraw.setXscale(-1, n+1);
         StdDraw.setPenRadius(0.006);
-        Double[] arr = SortUtil.randomDoubleArray(n);
+        Double[] arr = RandUtil.randomDoubleArray(n);
         sortFloat(arr);
     }
 
